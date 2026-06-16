@@ -1,0 +1,1115 @@
+@prefix : <https://w3id.org/def/RailwayFloodTwin#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/def/RailwayFloodTwin#> .
+
+<https://w3id.org/def/RailwayFloodTwin#> rdf:type owl:Ontology ;
+                                          <http://purl.org/dc/terms/creator> "TRAN Trong-Tin" ;
+                                          <http://purl.org/dc/terms/description> "Ontology representing the domain of railway infrastructure flood-risk assessment within a digital twin context. Covers infrastructure assets (track segments, culverts, bridges, ditches, embankments), hydrological simulation (rainfall, soil water index, runoff), hydraulic modeling (water surface elevation, flood polygons), vulnerability assessment (fragility curves, failure probability), and RAMS-compliant operational alerting (GREEN/YELLOW/RED)."@en ;
+                                          <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
+                                          <http://purl.org/dc/terms/title> "Railway Flood-Risk Digital Twin Ontology"@en ;
+                                          <http://purl.org/vocab/vann/preferredNamespacePrefix> "rft" ;
+                                          <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/def/RailwayFloodTwin#" ;
+                                          owl:versionInfo 1.0 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/ns/sosa/madeObservation
+<http://www.w3.org/ns/sosa/madeObservation> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#adjacentToTrack
+:adjacentToTrack rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Embankment ;
+                 rdfs:range :TrackSegment ;
+                 rdfs:comment "A relation between an embankment and the nearest track segment"@en ;
+                 rdfs:label "adjacent to track"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#belongsToCorridor
+:belongsToCorridor rdf:type owl:ObjectProperty ;
+                   rdfs:domain :InfrastructureAsset ;
+                   rdfs:range :RailwayCorridor ;
+                   rdfs:comment "A relation between an asset and the corridor it belongs to"@en ;
+                   rdfs:label "belongs to corridor"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#carriesTrack
+:carriesTrack rdf:type owl:ObjectProperty ;
+              rdfs:domain :Bridge ;
+              rdfs:range :TrackSegment ;
+              rdfs:comment "A relation between a bridge and the track segment it supports"@en ;
+              rdfs:label "carries track"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#computedFromRainfall
+:computedFromRainfall rdf:type owl:ObjectProperty ;
+                      rdfs:domain :SoilWaterIndex ;
+                      rdfs:range :RainfallEvent ;
+                      rdfs:comment "A relation between an SWI value and the rainfall events used to compute it"@en ;
+                      rdfs:label "computed from rainfall"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#containsAsset
+:containsAsset rdf:type owl:ObjectProperty ;
+               owl:inverseOf :belongsToCorridor ;
+               rdfs:domain :RailwayCorridor ;
+               rdfs:range :InfrastructureAsset ;
+               rdfs:comment "A relation between a corridor and its infrastructure assets"@en ;
+               rdfs:label "contains asset"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#derivesRunoff
+:derivesRunoff rdf:type owl:ObjectProperty ;
+               rdfs:domain :SoilWaterIndex ;
+               rdfs:range :RunoffCoefficient ;
+               rdfs:comment "A relation between SWI and the resulting runoff coefficient"@en ;
+               rdfs:label "derives runoff"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility
+:evaluatedByFragility rdf:type owl:ObjectProperty ;
+                      rdfs:domain :InfrastructureAsset ;
+                      rdfs:range :FragilityCurve ;
+                      rdfs:comment "A relation between an asset and the fragility curve used for vulnerability assessment"@en ;
+                      rdfs:label "evaluated by fragility"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasCrossSection
+:hasCrossSection rdf:type owl:ObjectProperty ;
+                 rdfs:domain :InfrastructureAsset ;
+                 rdfs:range :CrossSectionProfile ;
+                 rdfs:comment "A relation between an asset and its terrain cross-section profile"@en ;
+                 rdfs:label "has cross section"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus
+:hasCurrentStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :InfrastructureAsset ;
+                  rdfs:range :AlertStatus ;
+                  rdfs:comment "Shortcut: links an asset directly to its current alert status"@en ;
+                  rdfs:label "has current status"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasFailureProbability
+:hasFailureProbability rdf:type owl:ObjectProperty ;
+                       rdfs:domain :InfrastructureAsset ;
+                       rdfs:range :FailureProbability ;
+                       rdfs:comment "A relation between an asset and its computed probability of failure"@en ;
+                       rdfs:label "has failure probability"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasFloodExtent
+:hasFloodExtent rdf:type owl:ObjectProperty ;
+                rdfs:domain :WaterSurfaceElevation ;
+                rdfs:range :FloodPolygon ;
+                rdfs:comment "A relation between a WSE observation and the resulting flood polygon"@en ;
+                rdfs:label "has flood extent"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold
+:hasRiskThreshold rdf:type owl:ObjectProperty ;
+                  rdfs:domain :InfrastructureAsset ;
+                  rdfs:range :RiskThreshold ;
+                  rdfs:comment "A relation between an asset and its risk elevation thresholds"@en ;
+                  rdfs:label "has risk threshold"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#hasWSEObservation
+:hasWSEObservation rdf:type owl:ObjectProperty ;
+                   rdfs:domain :InfrastructureAsset ;
+                   rdfs:range :WaterSurfaceElevation ;
+                   rdfs:comment "A relation between an asset and a water surface elevation observation"@en ;
+                   rdfs:label "has WSE observation"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#isAdjacentTo
+:isAdjacentTo rdf:type owl:ObjectProperty ,
+                       owl:SymmetricProperty ;
+              rdfs:domain :InfrastructureAsset ;
+              rdfs:range :InfrastructureAsset ;
+              rdfs:comment "A symmetric relation between two physically adjacent infrastructure assets"@en ;
+              rdfs:label "is adjacent to"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#madeObservation
+:madeObservation rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf <http://www.w3.org/ns/sosa/madeObservation> ;
+                 owl:inverseOf :observedBy ;
+                 rdfs:domain :Sensor ;
+                 rdfs:range :Observation ;
+                 rdfs:comment "A relation between a sensor and its observation"@en ;
+                 rdfs:label "made observation"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#observedBy
+:observedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Observation ;
+            rdfs:range :Sensor ;
+            rdfs:comment "A relation between an observation and the sensor that made it"@en ;
+            rdfs:label "observed by"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#operatedBy
+:operatedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :RailwayCorridor ;
+            rdfs:range :RailwayOperator ;
+            rdfs:comment "A relation between a corridor and the railway operator"@en ;
+            rdfs:label "operated by"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#triggers
+:triggers rdf:type owl:ObjectProperty ;
+          rdfs:domain :AlertStatus ;
+          rdfs:range :OperationalDirective ;
+          rdfs:comment "A relation between an alert status and the directive it triggers"@en ;
+          rdfs:label "triggers"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#verdictForAsset
+:verdictForAsset rdf:type owl:ObjectProperty ;
+                 rdfs:domain :AlertVerdict ;
+                 rdfs:range :InfrastructureAsset ;
+                 rdfs:comment "N-ary: links an alert verdict to the assessed infrastructure asset"@en ;
+                 rdfs:label "verdict for asset"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#verdictHasDirective
+:verdictHasDirective rdf:type owl:ObjectProperty ;
+                     rdfs:domain :AlertVerdict ;
+                     rdfs:range :OperationalDirective ;
+                     rdfs:comment "N-ary: links an alert verdict to the resulting operational directive"@en ;
+                     rdfs:label "verdict has directive"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#verdictHasStatus
+:verdictHasStatus rdf:type owl:ObjectProperty ;
+                  rdfs:domain :AlertVerdict ;
+                  rdfs:range :AlertStatus ;
+                  rdfs:comment "N-ary: links an alert verdict to a RAMS alert status"@en ;
+                  rdfs:label "verdict has status"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#verdictHasWSE
+:verdictHasWSE rdf:type owl:ObjectProperty ;
+               rdfs:domain :AlertVerdict ;
+               rdfs:range :WaterSurfaceElevation ;
+               rdfs:comment "N-ary: links an alert verdict to the triggering water surface elevation"@en ;
+               rdfs:label "verdict has WSE"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/def/RailwayFloodTwin#assetId
+:assetId rdf:type owl:DatatypeProperty ;
+         rdfs:domain :InfrastructureAsset ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Unique string identifier for an infrastructure asset (e.g., Buse_3)"@en ;
+         rdfs:label "asset identifier"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#corridorName
+:corridorName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :RailwayCorridor ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Human-readable name of the railway corridor"@en ;
+              rdfs:label "corridor name"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#epsgCode
+:epsgCode rdf:type owl:DatatypeProperty ;
+          rdfs:domain :CoordinateReferenceSystem ;
+          rdfs:range xsd:integer ;
+          rdfs:comment "EPSG numeric code identifying a coordinate reference system"@en ;
+          rdfs:label "EPSG code"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#halfLifeDays
+:halfLifeDays rdf:type owl:DatatypeProperty ;
+              rdfs:domain :SoilWaterIndex ;
+              rdfs:range xsd:float ;
+              rdfs:comment "SWI exponential filter half-life parameter in days"@en ;
+              rdfs:label "half-life days"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#intensityMmH
+:intensityMmH rdf:type owl:DatatypeProperty ;
+              rdfs:domain :RainfallEvent ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Hourly rainfall intensity in mm/h"@en ;
+              rdfs:label "rainfall intensity"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#medianDepth
+:medianDepth rdf:type owl:DatatypeProperty ;
+             rdfs:domain :FragilityCurve ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Fragility curve parameter: depth at 50% failure probability (m)"@en ;
+             rdfs:label "median depth"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#orangeZ
+:orangeZ rdf:type owl:DatatypeProperty ;
+         rdfs:domain :RiskThreshold ;
+         rdfs:range xsd:float ;
+         rdfs:comment "WSE threshold (m NGF) for ORANGE alert — embankment erosion risk"@en ;
+         rdfs:label "orange threshold"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#pFailureValue
+:pFailureValue rdf:type owl:DatatypeProperty ;
+               rdfs:domain :FailureProbability ;
+               rdfs:range xsd:float ;
+               rdfs:comment "Computed failure probability from fragility curve (0.0 to 1.0)"@en ;
+               rdfs:label "probability of failure"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#redZ
+:redZ rdf:type owl:DatatypeProperty ;
+      rdfs:domain :RiskThreshold ;
+      rdfs:range xsd:float ;
+      rdfs:comment "WSE threshold (m NGF) for RED alert — water on track, halt trains"@en ;
+      rdfs:label "red threshold"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#runoffValue
+:runoffValue rdf:type owl:DatatypeProperty ;
+             rdfs:domain :RunoffCoefficient ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Sigmoid-derived runoff fraction (0.0 to 1.0)"@en ;
+             rdfs:label "runoff coefficient value"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#sigma
+:sigma rdf:type owl:DatatypeProperty ;
+       rdfs:domain :FragilityCurve ;
+       rdfs:range xsd:float ;
+       rdfs:comment "Fragility curve parameter: log-normal dispersion"@en ;
+       rdfs:label "sigma"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#swiValue
+:swiValue rdf:type owl:DatatypeProperty ;
+          rdfs:domain :SoilWaterIndex ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Soil Water Index value in mm"@en ;
+          rdfs:label "SWI value"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#timestamp
+:timestamp rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "Date and time of an observation or event"@en ;
+           rdfs:label "timestamp"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#wseValue
+:wseValue rdf:type owl:DatatypeProperty ;
+          rdfs:domain :WaterSurfaceElevation ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Water Surface Elevation in metres NGF"@en ;
+          rdfs:label "WSE value"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#yellowZ
+:yellowZ rdf:type owl:DatatypeProperty ;
+         rdfs:domain :RiskThreshold ;
+         rdfs:range xsd:float ;
+         rdfs:comment "WSE threshold (m NGF) for YELLOW alert — drainage at capacity"@en ;
+         rdfs:label "yellow threshold"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#zBallast
+:zBallast rdf:type owl:DatatypeProperty ;
+          rdfs:domain :TrackSegment ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Top-of-ballast elevation in metres NGF"@en ;
+          rdfs:label "ballast elevation"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#zTerrain
+:zTerrain rdf:type owl:DatatypeProperty ;
+          rdfs:domain :InfrastructureAsset ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Ground elevation at the asset location in metres NGF"@en ;
+          rdfs:label "terrain elevation"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#Feature
+<http://www.opengis.net/ont/geosparql#Feature> rdf:type owl:Class ;
+                                               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                                               rdfs:label "Feature"@en .
+
+
+###  http://www.w3.org/ns/sosa/Observation
+<http://www.w3.org/ns/sosa/Observation> rdf:type owl:Class ;
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+                                        rdfs:label "Observation"@en .
+
+
+###  http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> rdf:type owl:Class ;
+                                   rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+                                   rdfs:label "Sensor"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class ;
+                                         rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                         rdfs:label "Organization"@en .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class ;
+                               rdfs:isDefinedBy <https://w3id.org/bot#> ;
+                               rdfs:label "Element"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#AlertStatus
+:AlertStatus rdf:type owl:Class ;
+             rdfs:comment "A RAMS-compliant traffic-light risk category: GREEN (LOW, P<20%), YELLOW (MEDIUM, P 20-50%), or RED (HIGH, P>50%)"@en ;
+             rdfs:label "alert status"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#AlertVerdict
+:AlertVerdict rdf:type owl:Class ;
+              rdfs:comment "An operational risk verdict linking an asset, WSE, failure probability, alert status and directive. Implements the W3C n-ary relation pattern."@en ;
+              rdfs:label "alert verdict"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#BoxCulvert
+:BoxCulvert rdf:type owl:Class ;
+            rdfs:subClassOf :DrainageAsset ;
+            rdfs:comment "A box-shaped culvert (Dalot) that channels water under the railway"@en ;
+            rdfs:label "box culvert"@en ;
+            rdfs:seeAlso <https://www.wikidata.org/entity/Q1396042> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Bridge
+:Bridge rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/bot#Element> ,
+                        :InfrastructureAsset ;
+        owl:disjointWith :DrainageAsset ,
+                         :Embankment ,
+                         :TrackSegment ;
+        rdfs:comment "A railway bridge (Pont Rail) carrying the track over a watercourse or valley"@en ;
+        rdfs:label "bridge"@en ;
+        rdfs:seeAlso <https://www.wikidata.org/entity/Q12280> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem
+:CoordinateReferenceSystem rdf:type owl:Class ;
+                           rdfs:comment "A reference system for spatial coordinates (e.g., EPSG:2154 Lambert 93)"@en ;
+                           rdfs:label "coordinate reference system"@en ;
+                           rdfs:seeAlso <https://www.wikidata.org/entity/Q2477250> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile
+:CrossSectionProfile rdf:type owl:Class ;
+                     rdfs:comment "A terrain elevation profile sampled perpendicular to the track from DTM raster data"@en ;
+                     rdfs:label "cross-section profile"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Culvert
+:Culvert rdf:type owl:Class ;
+         rdfs:subClassOf :DrainageAsset ;
+         rdfs:comment "A pipe culvert (Buse) that channels water under the railway embankment"@en ;
+         rdfs:label "culvert"@en ;
+         rdfs:seeAlso <https://www.wikidata.org/entity/Q1396042> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#DrainageAsset
+:DrainageAsset rdf:type owl:Class ;
+               rdfs:subClassOf :InfrastructureAsset ;
+               owl:disjointWith :Embankment ,
+                                :TrackSegment ;
+               rdfs:comment "An infrastructure asset designed to channel water away from the track"@en ;
+               rdfs:label "drainage asset"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#EarthDitch
+:EarthDitch rdf:type owl:Class ;
+            rdfs:subClassOf :DrainageAsset ;
+            rdfs:comment "An unlined drainage ditch (Fosse terre) running alongside the railway"@en ;
+            rdfs:label "earth ditch"@en ;
+            rdfs:seeAlso <https://www.wikidata.org/entity/Q173036> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Embankment
+:Embankment rdf:type owl:Class ;
+            rdfs:subClassOf :InfrastructureAsset ;
+            owl:disjointWith :TrackSegment ;
+            rdfs:comment "A raised earth structure (Talus) supporting or protecting the railway track"@en ;
+            rdfs:label "embankment"@en ;
+            rdfs:seeAlso <https://www.wikidata.org/entity/Q646991> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#FailureProbability
+:FailureProbability rdf:type owl:Class ;
+                    rdfs:comment "A computed probability (0.0-1.0) of ballast or structural failure due to flood water depth"@en ;
+                    rdfs:label "failure probability"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#FloodPolygon
+:FloodPolygon rdf:type owl:Class ;
+              rdfs:comment "A geographic polygon representing the spatial extent of inundation at a simulation timestep"@en ;
+              rdfs:label "flood polygon"@en ;
+              rdfs:seeAlso <https://www.wikidata.org/entity/Q8068> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#FragilityCurve
+:FragilityCurve rdf:type owl:Class ;
+                rdfs:comment "A log-normal probability distribution mapping water depth to probability of structural failure. P_failure = Phi(ln(depth / median_depth) / sigma)"@en ;
+                rdfs:label "fragility curve"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset
+:InfrastructureAsset rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Feature> ;
+                     rdfs:comment "A physical asset belonging to the railway corridor that can be affected by flooding"@en ;
+                     rdfs:label "infrastructure asset"@en ;
+                     rdfs:seeAlso <https://www.wikidata.org/entity/Q811979> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#LinedDitch
+:LinedDitch rdf:type owl:Class ;
+            rdfs:subClassOf :DrainageAsset ;
+            rdfs:comment "A lined drainage ditch (Fosse terre revetu) with reinforced surface"@en ;
+            rdfs:label "lined ditch"@en ;
+            rdfs:seeAlso <https://www.wikidata.org/entity/Q173036> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+             rdfs:comment "An act of measuring a property, producing a result value at a timestamp"@en ;
+             rdfs:label "observation"@en ;
+             rdfs:seeAlso <https://www.wikidata.org/entity/Q24953776> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#OperationalDirective
+:OperationalDirective rdf:type owl:Class ;
+                      rdfs:comment "An instruction issued to train dispatchers based on alert status"@en ;
+                      rdfs:label "operational directive"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RailwayCorridor
+:RailwayCorridor rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :containsAsset ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ;
+                 rdfs:comment "A linear railway route along which infrastructure assets are monitored for flood risk"@en ;
+                 rdfs:label "railway corridor"@en ;
+                 rdfs:seeAlso <https://www.wikidata.org/entity/Q22667> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RailwayOperator
+:RailwayOperator rdf:type owl:Class ;
+                 rdfs:subClassOf <http://xmlns.com/foaf/0.1/Organization> ;
+                 rdfs:comment "An organization that operates and maintains a railway corridor"@en ;
+                 rdfs:label "railway operator"@en ;
+                 rdfs:seeAlso <https://www.wikidata.org/entity/Q740752> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RainGauge
+:RainGauge rdf:type owl:Class ;
+           rdfs:subClassOf :Sensor ;
+           rdfs:comment "A sensor that measures rainfall intensity (mm/h)"@en ;
+           rdfs:label "rain gauge"@en ;
+           rdfs:seeAlso <https://www.wikidata.org/entity/Q185672> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RainfallEvent
+:RainfallEvent rdf:type owl:Class ;
+               rdfs:comment "A meteorological observation of rainfall intensity at a given time"@en ;
+               rdfs:label "rainfall event"@en ;
+               rdfs:seeAlso <https://www.wikidata.org/entity/Q170175> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RiskThreshold
+:RiskThreshold rdf:type owl:Class ;
+               rdfs:comment "A set of elevation thresholds (yellow, orange, red) defining alert levels for an asset"@en ;
+               rdfs:label "risk threshold"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient
+:RunoffCoefficient rdf:type owl:Class ;
+                   rdfs:comment "A dimensionless coefficient (0-1) representing the fraction of rainfall becoming surface runoff. Derived via sigmoid function: C_runoff = C_max / (1 + e^(-k * (SWI - SWI_mid)))"@en ;
+                   rdfs:label "runoff coefficient"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Sensor
+:Sensor rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ;
+        rdfs:comment "A device that observes a physical property of the environment"@en ;
+        rdfs:label "sensor"@en ;
+        rdfs:seeAlso <https://www.wikidata.org/entity/Q167676> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex
+:SoilWaterIndex rdf:type owl:Class ;
+                rdfs:comment "A cumulative index of soil moisture computed via a recursive exponential filter from rainfall. Formula: SWI(t) = Rt * (1 - C) + SWI(t-1) * C"@en ;
+                rdfs:label "soil water index"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#TrackSegment
+:TrackSegment rdf:type owl:Class ;
+              rdfs:subClassOf :InfrastructureAsset ;
+              rdfs:comment "A section of railway track (Voie) with a ballast elevation, monitored for flood overtopping"@en ;
+              rdfs:label "track segment"@en ;
+              rdfs:seeAlso <https://www.wikidata.org/entity/Q728937> .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation
+:WaterSurfaceElevation rdf:type owl:Class ;
+                       rdfs:comment "The elevation (m NGF) of the water surface at a specific asset and timestep"@en ;
+                       rdfs:label "water surface elevation"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_0
+:Buse_0 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_0 ;
+        :isAdjacentTo :Talus_Terre_12 ,
+                      :Voie_0 ;
+        :assetId "Buse_0" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_1
+:Buse_1 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_1 ;
+        :isAdjacentTo :Talus_Terre_12 ,
+                      :Voie_0 ;
+        :assetId "Buse_1" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_2
+:Buse_2 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_2 ;
+        :isAdjacentTo :Talus_Terre_5 ,
+                      :Voie_0 ;
+        :assetId "Buse_2" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_3
+:Buse_3 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_3 ;
+        :isAdjacentTo :Talus_Terre_14 ,
+                      :Voie_0 ;
+        :assetId "Buse_3" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_4
+:Buse_4 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_4 ;
+        :isAdjacentTo :Talus_Terre_23 ,
+                      :Voie_0 ;
+        :assetId "Buse_4" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_5
+:Buse_5 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_5 ;
+        :isAdjacentTo :Talus_Terre_12 ,
+                      :Voie_0 ;
+        :assetId "Buse_5" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Buse_6
+:Buse_6 rdf:type owl:NamedIndividual ,
+                 :Culvert ;
+        :hasRiskThreshold :Threshold_Buse_6 ;
+        :isAdjacentTo :Talus_Terre_32 ,
+                      :Voie_0 ;
+        :assetId "Buse_6" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Dalot_0
+:Dalot_0 rdf:type owl:NamedIndividual ,
+                  :BoxCulvert ;
+         :hasRiskThreshold :Threshold_Dalot_0 ;
+         :isAdjacentTo :Talus_Terre_4 ,
+                       :Voie_0 ;
+         :assetId "Dalot_0" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#EmergencyHalt
+:EmergencyHalt rdf:type owl:NamedIndividual ,
+                        :OperationalDirective ;
+               rdfs:comment "Halt all trains — water on track surface, ballast failure imminent"@en ;
+               rdfs:label "EMERGENCY HALT (ETCS Stop)"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_0
+:Fosse_terre_revetu_0 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_0 ;
+                      :isAdjacentTo :Talus_Terre_35 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_0" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_1
+:Fosse_terre_revetu_1 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_1 ;
+                      :isAdjacentTo :Talus_Terre_35 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_1" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_2
+:Fosse_terre_revetu_2 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_2 ;
+                      :isAdjacentTo :Talus_Terre_5 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_2" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_3
+:Fosse_terre_revetu_3 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_3 ;
+                      :isAdjacentTo :Talus_Terre_21 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_3" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_4
+:Fosse_terre_revetu_4 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_4 ;
+                      :isAdjacentTo :Talus_Terre_20 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_4" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_5
+:Fosse_terre_revetu_5 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_5 ;
+                      :isAdjacentTo :Talus_Terre_3 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_5" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_6
+:Fosse_terre_revetu_6 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_6 ;
+                      :isAdjacentTo :Talus_Terre_4 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_6" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_7
+:Fosse_terre_revetu_7 rdf:type owl:NamedIndividual ,
+                               :LinedDitch ;
+                      :hasRiskThreshold :Threshold_Fosse_terre_revetu_7 ;
+                      :isAdjacentTo :Talus_Terre_30 ,
+                                    :Voie_0 ;
+                      :assetId "Fosse terre revetu_7" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#GREEN
+:GREEN rdf:type owl:NamedIndividual ,
+                :AlertStatus ;
+       :triggers :Standby ;
+       rdfs:comment "LOW risk — P_failure below 20%"@en ;
+       rdfs:label "GREEN"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Obs_Rain_T15
+:Obs_Rain_T15 rdf:type owl:NamedIndividual ,
+                       :RainfallEvent ;
+              :intensityMmH "40.9"^^xsd:float ;
+              :timestamp "2026-05-10T15:00:00Z"^^xsd:dateTime .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#PFailure_Buse_0_T15
+:PFailure_Buse_0_T15 rdf:type owl:NamedIndividual ,
+                              :FailureProbability ;
+                     :pFailureValue "0.35"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Pont_Rail_0
+:Pont_Rail_0 rdf:type owl:NamedIndividual ,
+                      :Bridge ;
+             :hasRiskThreshold :Threshold_Pont_Rail_0 ;
+             :isAdjacentTo :Talus_Terre_11 ,
+                           :Voie_0 ;
+             :assetId "Pont Rail_0" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Pont_Rail_1
+:Pont_Rail_1 rdf:type owl:NamedIndividual ,
+                      :Bridge ;
+             :hasRiskThreshold :Threshold_Pont_Rail_1 ;
+             :isAdjacentTo :Talus_Terre_11 ,
+                           :Voie_0 ;
+             :assetId "Pont Rail_1" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Pont_Rail_2
+:Pont_Rail_2 rdf:type owl:NamedIndividual ,
+                      :Bridge ;
+             :hasRiskThreshold :Threshold_Pont_Rail_2 ;
+             :isAdjacentTo :Talus_Terre_20 ,
+                           :Voie_0 ;
+             :assetId "Pont Rail_2" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Pont_Rail_3
+:Pont_Rail_3 rdf:type owl:NamedIndividual ,
+                      :Bridge ;
+             :hasRiskThreshold :Threshold_Pont_Rail_3 ;
+             :isAdjacentTo :Talus_Terre_13 ,
+                           :Voie_0 ;
+             :assetId "Pont Rail_3" .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RED
+:RED rdf:type owl:NamedIndividual ,
+              :AlertStatus ;
+     :triggers :EmergencyHalt ;
+     rdfs:comment "HIGH risk — P_failure above 50% or WSE exceeds z_ballast"@en ;
+     rdfs:label "RED"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#RainGauge_01
+:RainGauge_01 rdf:type owl:NamedIndividual ,
+                       :RainGauge ;
+              :madeObservation :Obs_Rain_T15 .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Runoff_T15
+:Runoff_T15 rdf:type owl:NamedIndividual ,
+                     :RunoffCoefficient ;
+            :runoffValue "0.62"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#SWI_T15
+:SWI_T15 rdf:type owl:NamedIndividual ,
+                  :SoilWaterIndex ;
+         :computedFromRainfall :Obs_Rain_T15 ;
+         :derivesRunoff :Runoff_T15 ;
+         :swiValue "155.2"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#SpeedRestriction
+:SpeedRestriction rdf:type owl:NamedIndividual ,
+                           :OperationalDirective ;
+                  rdfs:comment "Reduce train speed to 60 km/h through the affected segment"@en ;
+                  rdfs:label "Speed Restriction: 60 km/h"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Standby
+:Standby rdf:type owl:NamedIndividual ,
+                  :OperationalDirective ;
+         rdfs:comment "Normal operations — no action required"@en ;
+         rdfs:label "Standby / Standard Speed"@en .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_11
+:Talus_Terre_11 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_12
+:Talus_Terre_12 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_13
+:Talus_Terre_13 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_14
+:Talus_Terre_14 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_20
+:Talus_Terre_20 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_21
+:Talus_Terre_21 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_23
+:Talus_Terre_23 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_3
+:Talus_Terre_3 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_30
+:Talus_Terre_30 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_32
+:Talus_Terre_32 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_35
+:Talus_Terre_35 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_4
+:Talus_Terre_4 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Talus_Terre_5
+:Talus_Terre_5 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_0
+:Threshold_Buse_0 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "208.21"^^xsd:float ;
+                  :redZ "208.71"^^xsd:float ;
+                  :yellowZ "203.61"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_1
+:Threshold_Buse_1 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "208.92"^^xsd:float ;
+                  :redZ "209.42"^^xsd:float ;
+                  :yellowZ "208.42"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_2
+:Threshold_Buse_2 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "243.08"^^xsd:float ;
+                  :redZ "243.58"^^xsd:float ;
+                  :yellowZ "220.93"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_3
+:Threshold_Buse_3 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "220.72"^^xsd:float ;
+                  :redZ "221.22"^^xsd:float ;
+                  :yellowZ "220.22"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_4
+:Threshold_Buse_4 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "205.71"^^xsd:float ;
+                  :redZ "206.21"^^xsd:float ;
+                  :yellowZ "202.81"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_5
+:Threshold_Buse_5 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "208.21"^^xsd:float ;
+                  :redZ "208.71"^^xsd:float ;
+                  :yellowZ "203.81"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_6
+:Threshold_Buse_6 rdf:type owl:NamedIndividual ,
+                           :RiskThreshold ;
+                  :orangeZ "204.21"^^xsd:float ;
+                  :redZ "204.71"^^xsd:float ;
+                  :yellowZ "203.71"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Dalot_0
+:Threshold_Dalot_0 rdf:type owl:NamedIndividual ,
+                            :RiskThreshold ;
+                   :orangeZ "220.12"^^xsd:float ;
+                   :redZ "220.62"^^xsd:float ;
+                   :yellowZ "219.62"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_0
+:Threshold_Fosse_terre_revetu_0 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "244.95"^^xsd:float ;
+                                :redZ "245.45"^^xsd:float ;
+                                :yellowZ "244.45"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_1
+:Threshold_Fosse_terre_revetu_1 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "248.25"^^xsd:float ;
+                                :redZ "248.75"^^xsd:float ;
+                                :yellowZ "247.75"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_2
+:Threshold_Fosse_terre_revetu_2 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "243.08"^^xsd:float ;
+                                :redZ "243.58"^^xsd:float ;
+                                :yellowZ "238.25"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_3
+:Threshold_Fosse_terre_revetu_3 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "237.95"^^xsd:float ;
+                                :redZ "238.45"^^xsd:float ;
+                                :yellowZ "237.45"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_4
+:Threshold_Fosse_terre_revetu_4 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "245.52"^^xsd:float ;
+                                :redZ "246.02"^^xsd:float ;
+                                :yellowZ "238.05"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_5
+:Threshold_Fosse_terre_revetu_5 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "238.75"^^xsd:float ;
+                                :redZ "239.25"^^xsd:float ;
+                                :yellowZ "238.25"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_6
+:Threshold_Fosse_terre_revetu_6 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "219.13"^^xsd:float ;
+                                :redZ "219.63"^^xsd:float ;
+                                :yellowZ "218.63"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_7
+:Threshold_Fosse_terre_revetu_7 rdf:type owl:NamedIndividual ,
+                                         :RiskThreshold ;
+                                :orangeZ "206.99"^^xsd:float ;
+                                :redZ "207.49"^^xsd:float ;
+                                :yellowZ "206.71"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_0
+:Threshold_Pont_Rail_0 rdf:type owl:NamedIndividual ,
+                                :RiskThreshold ;
+                       :orangeZ "205.05"^^xsd:float ;
+                       :redZ "205.55"^^xsd:float ;
+                       :yellowZ "200.0"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_1
+:Threshold_Pont_Rail_1 rdf:type owl:NamedIndividual ,
+                                :RiskThreshold ;
+                       :orangeZ "205.05"^^xsd:float ;
+                       :redZ "205.55"^^xsd:float ;
+                       :yellowZ "200.0"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_2
+:Threshold_Pont_Rail_2 rdf:type owl:NamedIndividual ,
+                                :RiskThreshold ;
+                       :orangeZ "245.52"^^xsd:float ;
+                       :redZ "246.02"^^xsd:float ;
+                       :yellowZ "239.05"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_3
+:Threshold_Pont_Rail_3 rdf:type owl:NamedIndividual ,
+                                :RiskThreshold ;
+                       :orangeZ "211.01"^^xsd:float ;
+                       :redZ "211.51"^^xsd:float ;
+                       :yellowZ "210.51"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Verdict_Buse_0_T15
+:Verdict_Buse_0_T15 rdf:type owl:NamedIndividual ,
+                             :AlertVerdict ;
+                    :verdictForAsset :Buse_0 ;
+                    :verdictHasDirective :SpeedRestriction ;
+                    :verdictHasStatus :YELLOW ;
+                    :verdictHasWSE :WSE_Buse_0_T15 .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#Voie_0
+:Voie_0 rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#WSE_Buse_0_T15
+:WSE_Buse_0_T15 rdf:type owl:NamedIndividual ,
+                         :WaterSurfaceElevation ;
+                :timestamp "2026-05-10T15:00:00Z"^^xsd:dateTime ;
+                :wseValue "208.5"^^xsd:float .
+
+
+###  https://w3id.org/def/RailwayFloodTwin#YELLOW
+:YELLOW rdf:type owl:NamedIndividual ,
+                 :AlertStatus ;
+        :triggers :SpeedRestriction ;
+        rdfs:comment "MEDIUM risk — P_failure between 20% and 50%"@en ;
+        rdfs:label "YELLOW"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :GREEN
+                        :RED
+                        :YELLOW
+                      )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

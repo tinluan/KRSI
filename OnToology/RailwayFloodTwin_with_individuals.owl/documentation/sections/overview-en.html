@@ -1,0 +1,569 @@
+<h2 id="overv" class="list">Railway Flood-Risk Digital Twin Ontology: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#AlertStatus"
+         title="https://w3id.org/def/RailwayFloodTwin#AlertStatus">alert status</a>
+   </li>
+   <li>
+      <a href="#AlertVerdict"
+         title="https://w3id.org/def/RailwayFloodTwin#AlertVerdict">alert verdict</a>
+   </li>
+   <li>
+      <a href="#BoxCulvert" title="https://w3id.org/def/RailwayFloodTwin#BoxCulvert">box culvert</a>
+   </li>
+   <li>
+      <a href="#Bridge" title="https://w3id.org/def/RailwayFloodTwin#Bridge">bridge</a>
+   </li>
+   <li>
+      <a href="#CoordinateReferenceSystem"
+         title="https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem">coordinate reference system</a>
+   </li>
+   <li>
+      <a href="#CrossSectionProfile"
+         title="https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile">cross-section profile</a>
+   </li>
+   <li>
+      <a href="#Culvert" title="https://w3id.org/def/RailwayFloodTwin#Culvert">culvert</a>
+   </li>
+   <li>
+      <a href="#DrainageAsset"
+         title="https://w3id.org/def/RailwayFloodTwin#DrainageAsset">drainage asset</a>
+   </li>
+   <li>
+      <a href="#EarthDitch" title="https://w3id.org/def/RailwayFloodTwin#EarthDitch">earth ditch</a>
+   </li>
+   <li>
+      <a href="#https://w3id.org/bot#Element" title="https://w3id.org/bot#Element">Element</a>
+   </li>
+   <li>
+      <a href="#Embankment" title="https://w3id.org/def/RailwayFloodTwin#Embankment">embankment</a>
+   </li>
+   <li>
+      <a href="#FailureProbability"
+         title="https://w3id.org/def/RailwayFloodTwin#FailureProbability">failure probability</a>
+   </li>
+   <li>
+      <a href="#http://www.opengis.net/ont/geosparql#Feature" title="http://www.opengis.net/ont/geosparql#Feature">Feature</a>
+   </li>
+   <li>
+      <a href="#FloodPolygon"
+         title="https://w3id.org/def/RailwayFloodTwin#FloodPolygon">flood polygon</a>
+   </li>
+   <li>
+      <a href="#FragilityCurve"
+         title="https://w3id.org/def/RailwayFloodTwin#FragilityCurve">fragility curve</a>
+   </li>
+   <li>
+      <a href="#InfrastructureAsset"
+         title="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset">infrastructure asset</a>
+   </li>
+   <li>
+      <a href="#LinedDitch" title="https://w3id.org/def/RailwayFloodTwin#LinedDitch">lined ditch</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/Observation" title="http://www.w3.org/ns/sosa/Observation">Observation</a>
+   </li>
+   <li>
+      <a href="#Observation"
+         title="https://w3id.org/def/RailwayFloodTwin#Observation">observation</a>
+   </li>
+   <li>
+      <a href="#OperationalDirective"
+         title="https://w3id.org/def/RailwayFloodTwin#OperationalDirective">operational directive</a>
+   </li>
+   <li>
+      <a href="#http://xmlns.com/foaf/0.1/Organization" title="http://xmlns.com/foaf/0.1/Organization">Organization</a>
+   </li>
+   <li>
+      <a href="#RailwayCorridor"
+         title="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor">railway corridor</a>
+   </li>
+   <li>
+      <a href="#RailwayOperator"
+         title="https://w3id.org/def/RailwayFloodTwin#RailwayOperator">railway operator</a>
+   </li>
+   <li>
+      <a href="#RainGauge" title="https://w3id.org/def/RailwayFloodTwin#RainGauge">rain gauge</a>
+   </li>
+   <li>
+      <a href="#RainfallEvent"
+         title="https://w3id.org/def/RailwayFloodTwin#RainfallEvent">rainfall event</a>
+   </li>
+   <li>
+      <a href="#RiskThreshold"
+         title="https://w3id.org/def/RailwayFloodTwin#RiskThreshold">risk threshold</a>
+   </li>
+   <li>
+      <a href="#RunoffCoefficient"
+         title="https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient">runoff coefficient</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/Sensor" title="http://www.w3.org/ns/sosa/Sensor">Sensor</a>
+   </li>
+   <li>
+      <a href="#Sensor" title="https://w3id.org/def/RailwayFloodTwin#Sensor">sensor</a>
+   </li>
+   <li>
+      <a href="#SoilWaterIndex"
+         title="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex">soil water index</a>
+   </li>
+   <li>
+      <a href="#TrackSegment"
+         title="https://w3id.org/def/RailwayFloodTwin#TrackSegment">track segment</a>
+   </li>
+   <li>
+      <a href="#WaterSurfaceElevation"
+         title="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation">water surface elevation</a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#adjacentToTrack"
+         title="https://w3id.org/def/RailwayFloodTwin#adjacentToTrack">adjacent to track</a>
+   </li>
+   <li>
+      <a href="#belongsToCorridor"
+         title="https://w3id.org/def/RailwayFloodTwin#belongsToCorridor">belongs to corridor</a>
+   </li>
+   <li>
+      <a href="#carriesTrack"
+         title="https://w3id.org/def/RailwayFloodTwin#carriesTrack">carries track</a>
+   </li>
+   <li>
+      <a href="#computedFromRainfall"
+         title="https://w3id.org/def/RailwayFloodTwin#computedFromRainfall">computed from rainfall</a>
+   </li>
+   <li>
+      <a href="#containsAsset"
+         title="https://w3id.org/def/RailwayFloodTwin#containsAsset">contains asset</a>
+   </li>
+   <li>
+      <a href="#derivesRunoff"
+         title="https://w3id.org/def/RailwayFloodTwin#derivesRunoff">derives runoff</a>
+   </li>
+   <li>
+      <a href="#evaluatedByFragility"
+         title="https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility">evaluated by fragility</a>
+   </li>
+   <li>
+      <a href="#hasCrossSection"
+         title="https://w3id.org/def/RailwayFloodTwin#hasCrossSection">has cross section</a>
+   </li>
+   <li>
+      <a href="#hasCurrentStatus"
+         title="https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus">has current status</a>
+   </li>
+   <li>
+      <a href="#hasFailureProbability"
+         title="https://w3id.org/def/RailwayFloodTwin#hasFailureProbability">has failure probability</a>
+   </li>
+   <li>
+      <a href="#hasFloodExtent"
+         title="https://w3id.org/def/RailwayFloodTwin#hasFloodExtent">has flood extent</a>
+   </li>
+   <li>
+      <a href="#hasRiskThreshold"
+         title="https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold">has risk threshold</a>
+   </li>
+   <li>
+      <a href="#hasWSEObservation"
+         title="https://w3id.org/def/RailwayFloodTwin#hasWSEObservation">has WSE observation</a>
+   </li>
+   <li>
+      <a href="#isAdjacentTo"
+         title="https://w3id.org/def/RailwayFloodTwin#isAdjacentTo">is adjacent to</a>
+   </li>
+   <li>
+      <a href="#madeObservation"
+         title="https://w3id.org/def/RailwayFloodTwin#madeObservation">made observation</a>
+   </li>
+   <li>
+      <a href="#observedBy" title="https://w3id.org/def/RailwayFloodTwin#observedBy">observed by</a>
+   </li>
+   <li>
+      <a href="#operatedBy" title="https://w3id.org/def/RailwayFloodTwin#operatedBy">operated by</a>
+   </li>
+   <li>
+      <a href="#triggers" title="https://w3id.org/def/RailwayFloodTwin#triggers">triggers</a>
+   </li>
+   <li>
+      <a href="#verdictForAsset"
+         title="https://w3id.org/def/RailwayFloodTwin#verdictForAsset">verdict for asset</a>
+   </li>
+   <li>
+      <a href="#verdictHasDirective"
+         title="https://w3id.org/def/RailwayFloodTwin#verdictHasDirective">verdict has directive</a>
+   </li>
+   <li>
+      <a href="#verdictHasStatus"
+         title="https://w3id.org/def/RailwayFloodTwin#verdictHasStatus">verdict has status</a>
+   </li>
+   <li>
+      <a href="#verdictHasWSE"
+         title="https://w3id.org/def/RailwayFloodTwin#verdictHasWSE">verdict has WSE</a>
+   </li>
+</ul><h4>Data Properties</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#assetId" title="https://w3id.org/def/RailwayFloodTwin#assetId">asset identifier</a>
+   </li>
+   <li>
+      <a href="#zBallast" title="https://w3id.org/def/RailwayFloodTwin#zBallast">ballast elevation</a>
+   </li>
+   <li>
+      <a href="#corridorName"
+         title="https://w3id.org/def/RailwayFloodTwin#corridorName">corridor name</a>
+   </li>
+   <li>
+      <a href="#epsgCode" title="https://w3id.org/def/RailwayFloodTwin#epsgCode">EPSG code</a>
+   </li>
+   <li>
+      <a href="#halfLifeDays"
+         title="https://w3id.org/def/RailwayFloodTwin#halfLifeDays">half-life days</a>
+   </li>
+   <li>
+      <a href="#medianDepth"
+         title="https://w3id.org/def/RailwayFloodTwin#medianDepth">median depth</a>
+   </li>
+   <li>
+      <a href="#orangeZ" title="https://w3id.org/def/RailwayFloodTwin#orangeZ">orange threshold</a>
+   </li>
+   <li>
+      <a href="#pFailureValue"
+         title="https://w3id.org/def/RailwayFloodTwin#pFailureValue">probability of failure</a>
+   </li>
+   <li>
+      <a href="#intensityMmH"
+         title="https://w3id.org/def/RailwayFloodTwin#intensityMmH">rainfall intensity</a>
+   </li>
+   <li>
+      <a href="#redZ" title="https://w3id.org/def/RailwayFloodTwin#redZ">red threshold</a>
+   </li>
+   <li>
+      <a href="#runoffValue"
+         title="https://w3id.org/def/RailwayFloodTwin#runoffValue">runoff coefficient value</a>
+   </li>
+   <li>
+      <a href="#sigma" title="https://w3id.org/def/RailwayFloodTwin#sigma">sigma</a>
+   </li>
+   <li>
+      <a href="#swiValue" title="https://w3id.org/def/RailwayFloodTwin#swiValue">SWI value</a>
+   </li>
+   <li>
+      <a href="#zTerrain" title="https://w3id.org/def/RailwayFloodTwin#zTerrain">terrain elevation</a>
+   </li>
+   <li>
+      <a href="#timestamp" title="https://w3id.org/def/RailwayFloodTwin#timestamp">timestamp</a>
+   </li>
+   <li>
+      <a href="#wseValue" title="https://w3id.org/def/RailwayFloodTwin#wseValue">WSE value</a>
+   </li>
+   <li>
+      <a href="#yellowZ" title="https://w3id.org/def/RailwayFloodTwin#yellowZ">yellow threshold</a>
+   </li>
+</ul><h4>Named Individuals</h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist">
+   <li>
+      <a href="#Buse_0" title="https://w3id.org/def/RailwayFloodTwin#Buse_0">
+         <span>buse 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_1" title="https://w3id.org/def/RailwayFloodTwin#Buse_1">
+         <span>buse 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_2" title="https://w3id.org/def/RailwayFloodTwin#Buse_2">
+         <span>buse 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_3" title="https://w3id.org/def/RailwayFloodTwin#Buse_3">
+         <span>buse 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_4" title="https://w3id.org/def/RailwayFloodTwin#Buse_4">
+         <span>buse 4</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_5" title="https://w3id.org/def/RailwayFloodTwin#Buse_5">
+         <span>buse 5</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Buse_6" title="https://w3id.org/def/RailwayFloodTwin#Buse_6">
+         <span>buse 6</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Dalot_0" title="https://w3id.org/def/RailwayFloodTwin#Dalot_0">
+         <span>dalot 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#EmergencyHalt"
+         title="https://w3id.org/def/RailwayFloodTwin#EmergencyHalt">EMERGENCY HALT (ETCS Stop)</a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_0">
+         <span>fosse terre revetu 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_1"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_1">
+         <span>fosse terre revetu 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_2"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_2">
+         <span>fosse terre revetu 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_3"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_3">
+         <span>fosse terre revetu 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_4"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_4">
+         <span>fosse terre revetu 4</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_5"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_5">
+         <span>fosse terre revetu 5</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_6"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_6">
+         <span>fosse terre revetu 6</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Fosse_terre_revetu_7"
+         title="https://w3id.org/def/RailwayFloodTwin#Fosse_terre_revetu_7">
+         <span>fosse terre revetu 7</span>
+      </a>
+   </li>
+   <li>
+      <a href="#GREEN" title="https://w3id.org/def/RailwayFloodTwin#GREEN">GREEN</a>
+   </li>
+   <li>
+      <a href="#Obs_Rain_T15"
+         title="https://w3id.org/def/RailwayFloodTwin#Obs_Rain_T15">
+         <span>obs rain t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#PFailure_Buse_0_T15"
+         title="https://w3id.org/def/RailwayFloodTwin#PFailure_Buse_0_T15">
+         <span>p failure buse 0 t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Pont_Rail_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Pont_Rail_0">
+         <span>pont rail 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Pont_Rail_1"
+         title="https://w3id.org/def/RailwayFloodTwin#Pont_Rail_1">
+         <span>pont rail 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Pont_Rail_2"
+         title="https://w3id.org/def/RailwayFloodTwin#Pont_Rail_2">
+         <span>pont rail 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Pont_Rail_3"
+         title="https://w3id.org/def/RailwayFloodTwin#Pont_Rail_3">
+         <span>pont rail 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#RainGauge_01"
+         title="https://w3id.org/def/RailwayFloodTwin#RainGauge_01">
+         <span>rain gauge 01</span>
+      </a>
+   </li>
+   <li>
+      <a href="#RED" title="https://w3id.org/def/RailwayFloodTwin#RED">RED</a>
+   </li>
+   <li>
+      <a href="#Runoff_T15"
+         title="https://w3id.org/def/RailwayFloodTwin#Runoff_T15">
+         <span>runoff t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#SWI_T15" title="https://w3id.org/def/RailwayFloodTwin#SWI_T15">
+         <span>s w i t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#SpeedRestriction"
+         title="https://w3id.org/def/RailwayFloodTwin#SpeedRestriction">Speed Restriction: 60 km/h</a>
+   </li>
+   <li>
+      <a href="#Standby" title="https://w3id.org/def/RailwayFloodTwin#Standby">Standby / Standard Speed</a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_0">
+         <span>threshold buse 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_1"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_1">
+         <span>threshold buse 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_2"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_2">
+         <span>threshold buse 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_3"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_3">
+         <span>threshold buse 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_4"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_4">
+         <span>threshold buse 4</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_5"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_5">
+         <span>threshold buse 5</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Buse_6"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Buse_6">
+         <span>threshold buse 6</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Dalot_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Dalot_0">
+         <span>threshold dalot 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_0">
+         <span>threshold fosse terre revetu 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_1"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_1">
+         <span>threshold fosse terre revetu 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_2"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_2">
+         <span>threshold fosse terre revetu 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_3"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_3">
+         <span>threshold fosse terre revetu 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_4"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_4">
+         <span>threshold fosse terre revetu 4</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_5"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_5">
+         <span>threshold fosse terre revetu 5</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_6"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_6">
+         <span>threshold fosse terre revetu 6</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Fosse_terre_revetu_7"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Fosse_terre_revetu_7">
+         <span>threshold fosse terre revetu 7</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Pont_Rail_0"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_0">
+         <span>threshold pont rail 0</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Pont_Rail_1"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_1">
+         <span>threshold pont rail 1</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Pont_Rail_2"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_2">
+         <span>threshold pont rail 2</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Threshold_Pont_Rail_3"
+         title="https://w3id.org/def/RailwayFloodTwin#Threshold_Pont_Rail_3">
+         <span>threshold pont rail 3</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Verdict_Buse_0_T15"
+         title="https://w3id.org/def/RailwayFloodTwin#Verdict_Buse_0_T15">
+         <span>verdict buse 0 t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#WSE_Buse_0_T15"
+         title="https://w3id.org/def/RailwayFloodTwin#WSE_Buse_0_T15">
+         <span>w s e buse 0 t15</span>
+      </a>
+   </li>
+   <li>
+      <a href="#YELLOW" title="https://w3id.org/def/RailwayFloodTwin#YELLOW">YELLOW</a>
+   </li>
+</ul><h4> Rules </h4><ul xmlns:widoco="https://w3id.org/widoco/vocab#"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    class="hlist"/>
