@@ -185,6 +185,9 @@
         <rdfs:comment xml:lang="en">A relation between a corridor and the railway operator</rdfs:comment>
     </owl:ObjectProperty>
 
+    <!-- External properties referenced -->
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/sosa/madeObservation"/>
+
     <!-- madeObservation / observedBy -->
     <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#madeObservation">
         <owl:inverseOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#observedBy"/>

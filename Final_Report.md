@@ -78,9 +78,14 @@ The ontology implementation (`RailwayFloodTwin.owl`) was evaluated using the **O
 The scan results are summarized below:
 
 * **Critical Pitfalls:** 0
-* **Important Pitfalls:** 0
-* **Minor Pitfalls:** [e.g., 3 minor pitfalls found: P08 (Missing annotations), P13 (Inverse relationships missing)...]
-* **Resolution:** All local classes and properties have labels and comments (`rdfs:label` and `rdfs:comment` annotations). Reused terms from external vocabularies (e.g. SOSA, GeoSPARQL) were left unmodified.
+* **Important Pitfalls:** 2 detected (P11 and P35)
+  * *P11: Missing domain or range in properties* (on `rft:timestamp`). We left it blank intentionally because `timestamp` is shared across `Observation`, `RainfallEvent`, and `AlertVerdict` to allow reuse, which is a standard ontology design practice.
+  * *P35: Untyped property* (on `sosa:madeObservation`). We resolved this in the latest update of `RailwayFloodTwin.owl` by explicitly declaring `sosa:madeObservation` as an `owl:ObjectProperty` in the ontology header.
+* **Minor Pitfalls:** 4 detected (P04, P08, P13, P32)
+  * *P04: Creating unconnected ontology elements* & *P08: Missing annotations* on external classes (`sosa:Sensor`, `geo:Feature` etc.). These are external classes declared locally for linking and do not require full local definitions.
+  * *P13: Inverse relationships not explicitly declared* (some properties do not require a backward relationship for our digital twin logic).
+  * *P32: Several classes with the same label* (e.g. `rft:Sensor` and `sosa:Sensor` sharing the label "Sensor", which is standard for local subclasses).
+* **Resolution:** The important pitfall P35 was resolved by adding explicit type declarations in the OWL file. All other minor pitfalls are standard side-effects of reusing external W3C/OGC vocabularies.
 
 ![OOPS! Evaluation Results](./oops_results.png)
 

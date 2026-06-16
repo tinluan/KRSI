@@ -1,0 +1,473 @@
+@prefix : <https://w3id.org/def/RailwayFloodTwin#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dcterms:creator a owl:AnnotationProperty .
+
+dcterms:description a owl:AnnotationProperty .
+
+dcterms:license a owl:AnnotationProperty .
+
+dcterms:title a owl:AnnotationProperty .
+
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+: a owl:Ontology ;
+    dcterms:creator "TRAN Trong-Tin" ;
+    dcterms:description "Ontology representing the domain of railway infrastructure flood-risk assessment within a digital twin context. Covers infrastructure assets (track segments, culverts, bridges, ditches, embankments), hydrological simulation (rainfall, soil water index, runoff), hydraulic modeling (water surface elevation, flood polygons), vulnerability assessment (fragility curves, failure probability), and RAMS-compliant operational alerting (GREEN/YELLOW/RED)."@en ;
+    dcterms:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
+    dcterms:title "Railway Flood-Risk Digital Twin Ontology"@en ;
+    vann:preferredNamespacePrefix "rft" ;
+    vann:preferredNamespaceUri "https://w3id.org/def/RailwayFloodTwin#" ;
+    owl:versionInfo 1.0 .
+
+:BoxCulvert a owl:Class ;
+    rdfs:label "box culvert"@en ;
+    rdfs:comment "A box-shaped culvert (Dalot) that channels water under the railway"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q1396042> ;
+    rdfs:subClassOf :DrainageAsset .
+
+:Culvert a owl:Class ;
+    rdfs:label "culvert"@en ;
+    rdfs:comment "A pipe culvert (Buse) that channels water under the railway embankment"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q1396042> ;
+    rdfs:subClassOf :DrainageAsset .
+
+:EarthDitch a owl:Class ;
+    rdfs:label "earth ditch"@en ;
+    rdfs:comment "An unlined drainage ditch (Fosse terre) running alongside the railway"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q173036> ;
+    rdfs:subClassOf :DrainageAsset .
+
+:LinedDitch a owl:Class ;
+    rdfs:label "lined ditch"@en ;
+    rdfs:comment "A lined drainage ditch (Fosse terre revetu) with reinforced surface"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q173036> ;
+    rdfs:subClassOf :DrainageAsset .
+
+:RainGauge a owl:Class ;
+    rdfs:label "rain gauge"@en ;
+    rdfs:comment "A sensor that measures rainfall intensity (mm/h)"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q185672> ;
+    rdfs:subClassOf :Sensor .
+
+:adjacentToTrack a owl:ObjectProperty ;
+    rdfs:label "adjacent to track"@en ;
+    rdfs:comment "A relation between an embankment and the nearest track segment"@en ;
+    rdfs:domain :Embankment ;
+    rdfs:range :TrackSegment .
+
+:assetId a owl:DatatypeProperty ;
+    rdfs:label "asset identifier"@en ;
+    rdfs:comment "Unique string identifier for an infrastructure asset (e.g., Buse_3)"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range xsd:string .
+
+:carriesTrack a owl:ObjectProperty ;
+    rdfs:label "carries track"@en ;
+    rdfs:comment "A relation between a bridge and the track segment it supports"@en ;
+    rdfs:domain :Bridge ;
+    rdfs:range :TrackSegment .
+
+:computedFromRainfall a owl:ObjectProperty ;
+    rdfs:label "computed from rainfall"@en ;
+    rdfs:comment "A relation between an SWI value and the rainfall events used to compute it"@en ;
+    rdfs:domain :SoilWaterIndex ;
+    rdfs:range :RainfallEvent .
+
+:corridorName a owl:DatatypeProperty ;
+    rdfs:label "corridor name"@en ;
+    rdfs:comment "Human-readable name of the railway corridor"@en ;
+    rdfs:domain :RailwayCorridor ;
+    rdfs:range xsd:string .
+
+:derivesRunoff a owl:ObjectProperty ;
+    rdfs:label "derives runoff"@en ;
+    rdfs:comment "A relation between SWI and the resulting runoff coefficient"@en ;
+    rdfs:domain :SoilWaterIndex ;
+    rdfs:range :RunoffCoefficient .
+
+:epsgCode a owl:DatatypeProperty ;
+    rdfs:label "EPSG code"@en ;
+    rdfs:comment "EPSG numeric code identifying a coordinate reference system"@en ;
+    rdfs:domain :CoordinateReferenceSystem ;
+    rdfs:range xsd:integer .
+
+:evaluatedByFragility a owl:ObjectProperty ;
+    rdfs:label "evaluated by fragility"@en ;
+    rdfs:comment "A relation between an asset and the fragility curve used for vulnerability assessment"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :FragilityCurve .
+
+:halfLifeDays a owl:DatatypeProperty ;
+    rdfs:label "half-life days"@en ;
+    rdfs:comment "SWI exponential filter half-life parameter in days"@en ;
+    rdfs:domain :SoilWaterIndex ;
+    rdfs:range xsd:float .
+
+:hasCrossSection a owl:ObjectProperty ;
+    rdfs:label "has cross section"@en ;
+    rdfs:comment "A relation between an asset and its terrain cross-section profile"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :CrossSectionProfile .
+
+:hasCurrentStatus a owl:ObjectProperty ;
+    rdfs:label "has current status"@en ;
+    rdfs:comment "Shortcut: links an asset directly to its current alert status"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :AlertStatus .
+
+:hasFailureProbability a owl:ObjectProperty ;
+    rdfs:label "has failure probability"@en ;
+    rdfs:comment "A relation between an asset and its computed probability of failure"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :FailureProbability .
+
+:hasFloodExtent a owl:ObjectProperty ;
+    rdfs:label "has flood extent"@en ;
+    rdfs:comment "A relation between a WSE observation and the resulting flood polygon"@en ;
+    rdfs:domain :WaterSurfaceElevation ;
+    rdfs:range :FloodPolygon .
+
+:hasRiskThreshold a owl:ObjectProperty ;
+    rdfs:label "has risk threshold"@en ;
+    rdfs:comment "A relation between an asset and its risk elevation thresholds"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :RiskThreshold .
+
+:hasWSEObservation a owl:ObjectProperty ;
+    rdfs:label "has WSE observation"@en ;
+    rdfs:comment "A relation between an asset and a water surface elevation observation"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :WaterSurfaceElevation .
+
+:intensityMmH a owl:DatatypeProperty ;
+    rdfs:label "rainfall intensity"@en ;
+    rdfs:comment "Hourly rainfall intensity in mm/h"@en ;
+    rdfs:domain :RainfallEvent ;
+    rdfs:range xsd:float .
+
+:isAdjacentTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is adjacent to"@en ;
+    rdfs:comment "A symmetric relation between two physically adjacent infrastructure assets"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :InfrastructureAsset .
+
+:madeObservation a owl:ObjectProperty ;
+    rdfs:label "made observation"@en ;
+    rdfs:comment "A relation between a sensor and its observation"@en ;
+    rdfs:domain :Sensor ;
+    rdfs:range :Observation ;
+    rdfs:subPropertyOf sosa:madeObservation ;
+    owl:inverseOf :observedBy .
+
+:medianDepth a owl:DatatypeProperty ;
+    rdfs:label "median depth"@en ;
+    rdfs:comment "Fragility curve parameter: depth at 50% failure probability (m)"@en ;
+    rdfs:domain :FragilityCurve ;
+    rdfs:range xsd:float .
+
+:operatedBy a owl:ObjectProperty ;
+    rdfs:label "operated by"@en ;
+    rdfs:comment "A relation between a corridor and the railway operator"@en ;
+    rdfs:domain :RailwayCorridor ;
+    rdfs:range :RailwayOperator .
+
+:orangeZ a owl:DatatypeProperty ;
+    rdfs:label "orange threshold"@en ;
+    rdfs:comment "WSE threshold (m NGF) for ORANGE alert — embankment erosion risk"@en ;
+    rdfs:domain :RiskThreshold ;
+    rdfs:range xsd:float .
+
+:pFailureValue a owl:DatatypeProperty ;
+    rdfs:label "probability of failure"@en ;
+    rdfs:comment "Computed failure probability from fragility curve (0.0 to 1.0)"@en ;
+    rdfs:domain :FailureProbability ;
+    rdfs:range xsd:float .
+
+:redZ a owl:DatatypeProperty ;
+    rdfs:label "red threshold"@en ;
+    rdfs:comment "WSE threshold (m NGF) for RED alert — water on track, halt trains"@en ;
+    rdfs:domain :RiskThreshold ;
+    rdfs:range xsd:float .
+
+:runoffValue a owl:DatatypeProperty ;
+    rdfs:label "runoff coefficient value"@en ;
+    rdfs:comment "Sigmoid-derived runoff fraction (0.0 to 1.0)"@en ;
+    rdfs:domain :RunoffCoefficient ;
+    rdfs:range xsd:float .
+
+:sigma a owl:DatatypeProperty ;
+    rdfs:label "sigma"@en ;
+    rdfs:comment "Fragility curve parameter: log-normal dispersion"@en ;
+    rdfs:domain :FragilityCurve ;
+    rdfs:range xsd:float .
+
+:swiValue a owl:DatatypeProperty ;
+    rdfs:label "SWI value"@en ;
+    rdfs:comment "Soil Water Index value in mm"@en ;
+    rdfs:domain :SoilWaterIndex ;
+    rdfs:range xsd:float .
+
+:timestamp a owl:DatatypeProperty ;
+    rdfs:label "timestamp"@en ;
+    rdfs:comment "Date and time of an observation or event"@en ;
+    rdfs:range xsd:dateTime .
+
+:triggers a owl:ObjectProperty ;
+    rdfs:label "triggers"@en ;
+    rdfs:comment "A relation between an alert status and the directive it triggers"@en ;
+    rdfs:domain :AlertStatus ;
+    rdfs:range :OperationalDirective .
+
+:verdictForAsset a owl:ObjectProperty ;
+    rdfs:label "verdict for asset"@en ;
+    rdfs:comment "N-ary: links an alert verdict to the assessed infrastructure asset"@en ;
+    rdfs:domain :AlertVerdict ;
+    rdfs:range :InfrastructureAsset .
+
+:verdictHasDirective a owl:ObjectProperty ;
+    rdfs:label "verdict has directive"@en ;
+    rdfs:comment "N-ary: links an alert verdict to the resulting operational directive"@en ;
+    rdfs:domain :AlertVerdict ;
+    rdfs:range :OperationalDirective .
+
+:verdictHasStatus a owl:ObjectProperty ;
+    rdfs:label "verdict has status"@en ;
+    rdfs:comment "N-ary: links an alert verdict to a RAMS alert status"@en ;
+    rdfs:domain :AlertVerdict ;
+    rdfs:range :AlertStatus .
+
+:verdictHasWSE a owl:ObjectProperty ;
+    rdfs:label "verdict has WSE"@en ;
+    rdfs:comment "N-ary: links an alert verdict to the triggering water surface elevation"@en ;
+    rdfs:domain :AlertVerdict ;
+    rdfs:range :WaterSurfaceElevation .
+
+:wseValue a owl:DatatypeProperty ;
+    rdfs:label "WSE value"@en ;
+    rdfs:comment "Water Surface Elevation in metres NGF"@en ;
+    rdfs:domain :WaterSurfaceElevation ;
+    rdfs:range xsd:float .
+
+:yellowZ a owl:DatatypeProperty ;
+    rdfs:label "yellow threshold"@en ;
+    rdfs:comment "WSE threshold (m NGF) for YELLOW alert — drainage at capacity"@en ;
+    rdfs:domain :RiskThreshold ;
+    rdfs:range xsd:float .
+
+:zBallast a owl:DatatypeProperty ;
+    rdfs:label "ballast elevation"@en ;
+    rdfs:comment "Top-of-ballast elevation in metres NGF"@en ;
+    rdfs:domain :TrackSegment ;
+    rdfs:range xsd:float .
+
+:zTerrain a owl:DatatypeProperty ;
+    rdfs:label "terrain elevation"@en ;
+    rdfs:comment "Ground elevation at the asset location in metres NGF"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range xsd:float .
+
+geo:Feature a owl:Class ;
+    rdfs:label "Feature"@en ;
+    rdfs:isDefinedBy geo: .
+
+sosa:Observation a owl:Class ;
+    rdfs:label "Observation"@en ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:Sensor a owl:Class ;
+    rdfs:label "Sensor"@en ;
+    rdfs:isDefinedBy sosa: .
+
+foaf:Organization a owl:Class ;
+    rdfs:label "Organization"@en ;
+    rdfs:isDefinedBy foaf: .
+
+bot:Element a owl:Class ;
+    rdfs:label "Element"@en ;
+    rdfs:isDefinedBy bot: .
+
+:CoordinateReferenceSystem a owl:Class ;
+    rdfs:label "coordinate reference system"@en ;
+    rdfs:comment "A reference system for spatial coordinates (e.g., EPSG:2154 Lambert 93)"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q2477250> .
+
+:CrossSectionProfile a owl:Class ;
+    rdfs:label "cross-section profile"@en ;
+    rdfs:comment "A terrain elevation profile sampled perpendicular to the track from DTM raster data"@en .
+
+:EmergencyHalt a owl:NamedIndividual,
+        :OperationalDirective ;
+    rdfs:label "EMERGENCY HALT (ETCS Stop)"@en ;
+    rdfs:comment "Halt all trains — water on track surface, ballast failure imminent"@en .
+
+:FloodPolygon a owl:Class ;
+    rdfs:label "flood polygon"@en ;
+    rdfs:comment "A geographic polygon representing the spatial extent of inundation at a simulation timestep"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q8068> .
+
+:GREEN a owl:NamedIndividual,
+        :AlertStatus ;
+    rdfs:label "GREEN"@en ;
+    rdfs:comment "LOW risk — P_failure below 20%"@en ;
+    :triggers :Standby .
+
+:RED a owl:NamedIndividual,
+        :AlertStatus ;
+    rdfs:label "RED"@en ;
+    rdfs:comment "HIGH risk — P_failure above 50% or WSE exceeds z_ballast"@en ;
+    :triggers :EmergencyHalt .
+
+:RailwayOperator a owl:Class ;
+    rdfs:label "railway operator"@en ;
+    rdfs:comment "An organization that operates and maintains a railway corridor"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q740752> ;
+    rdfs:subClassOf foaf:Organization .
+
+:SpeedRestriction a owl:NamedIndividual,
+        :OperationalDirective ;
+    rdfs:label "Speed Restriction: 60 km/h"@en ;
+    rdfs:comment "Reduce train speed to 60 km/h through the affected segment"@en .
+
+:Standby a owl:NamedIndividual,
+        :OperationalDirective ;
+    rdfs:label "Standby / Standard Speed"@en ;
+    rdfs:comment "Normal operations — no action required"@en .
+
+:YELLOW a owl:NamedIndividual,
+        :AlertStatus ;
+    rdfs:label "YELLOW"@en ;
+    rdfs:comment "MEDIUM risk — P_failure between 20% and 50%"@en ;
+    :triggers :SpeedRestriction .
+
+:belongsToCorridor a owl:ObjectProperty ;
+    rdfs:label "belongs to corridor"@en ;
+    rdfs:comment "A relation between an asset and the corridor it belongs to"@en ;
+    rdfs:domain :InfrastructureAsset ;
+    rdfs:range :RailwayCorridor .
+
+:containsAsset a owl:ObjectProperty ;
+    rdfs:label "contains asset"@en ;
+    rdfs:comment "A relation between a corridor and its infrastructure assets"@en ;
+    rdfs:domain :RailwayCorridor ;
+    rdfs:range :InfrastructureAsset ;
+    owl:inverseOf :belongsToCorridor .
+
+:observedBy a owl:ObjectProperty ;
+    rdfs:label "observed by"@en ;
+    rdfs:comment "A relation between an observation and the sensor that made it"@en ;
+    rdfs:domain :Observation ;
+    rdfs:range :Sensor .
+
+:FailureProbability a owl:Class ;
+    rdfs:label "failure probability"@en ;
+    rdfs:comment "A computed probability (0.0-1.0) of ballast or structural failure due to flood water depth"@en .
+
+:Observation a owl:Class ;
+    rdfs:label "observation"@en ;
+    rdfs:comment "An act of measuring a property, producing a result value at a timestamp"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q24953776> ;
+    rdfs:subClassOf sosa:Observation .
+
+:RainfallEvent a owl:Class ;
+    rdfs:label "rainfall event"@en ;
+    rdfs:comment "A meteorological observation of rainfall intensity at a given time"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q170175> .
+
+:RunoffCoefficient a owl:Class ;
+    rdfs:label "runoff coefficient"@en ;
+    rdfs:comment "A dimensionless coefficient (0-1) representing the fraction of rainfall becoming surface runoff. Derived via sigmoid function: C_runoff = C_max / (1 + e^(-k * (SWI - SWI_mid)))"@en .
+
+:Embankment a owl:Class ;
+    rdfs:label "embankment"@en ;
+    rdfs:comment "A raised earth structure (Talus) supporting or protecting the railway track"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q646991> ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    owl:disjointWith :Bridge .
+
+:FragilityCurve a owl:Class ;
+    rdfs:label "fragility curve"@en ;
+    rdfs:comment "A log-normal probability distribution mapping water depth to probability of structural failure. P_failure = Phi(ln(depth / median_depth) / sigma)"@en .
+
+:Sensor a owl:Class ;
+    rdfs:label "sensor"@en ;
+    rdfs:comment "A device that observes a physical property of the environment"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q167676> ;
+    rdfs:subClassOf sosa:Sensor .
+
+:TrackSegment a owl:Class ;
+    rdfs:label "track segment"@en ;
+    rdfs:comment "A section of railway track (Voie) with a ballast elevation, monitored for flood overtopping"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q728937> ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    owl:disjointWith :Bridge,
+        :DrainageAsset,
+        :Embankment .
+
+:AlertVerdict a owl:Class ;
+    rdfs:label "alert verdict"@en ;
+    rdfs:comment "An operational risk verdict linking an asset, WSE, failure probability, alert status and directive. Implements the W3C n-ary relation pattern."@en .
+
+:Bridge a owl:Class ;
+    rdfs:label "bridge"@en ;
+    rdfs:comment "A railway bridge (Pont Rail) carrying the track over a watercourse or valley"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q12280> ;
+    rdfs:subClassOf bot:Element,
+        :InfrastructureAsset .
+
+:RailwayCorridor a owl:Class ;
+    rdfs:label "railway corridor"@en ;
+    rdfs:comment "A linear railway route along which infrastructure assets are monitored for flood risk"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q22667> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty :containsAsset ] .
+
+:RiskThreshold a owl:Class ;
+    rdfs:label "risk threshold"@en ;
+    rdfs:comment "A set of elevation thresholds (yellow, orange, red) defining alert levels for an asset"@en .
+
+:SoilWaterIndex a owl:Class ;
+    rdfs:label "soil water index"@en ;
+    rdfs:comment "A cumulative index of soil moisture computed via a recursive exponential filter from rainfall. Formula: SWI(t) = Rt * (1 - C) + SWI(t-1) * C"@en .
+
+:WaterSurfaceElevation a owl:Class ;
+    rdfs:label "water surface elevation"@en ;
+    rdfs:comment "The elevation (m NGF) of the water surface at a specific asset and timestep"@en .
+
+:DrainageAsset a owl:Class ;
+    rdfs:label "drainage asset"@en ;
+    rdfs:comment "An infrastructure asset designed to channel water away from the track"@en ;
+    rdfs:subClassOf :InfrastructureAsset ;
+    owl:disjointWith :Bridge,
+        :Embankment .
+
+:OperationalDirective a owl:Class ;
+    rdfs:label "operational directive"@en ;
+    rdfs:comment "An instruction issued to train dispatchers based on alert status"@en .
+
+:AlertStatus a owl:Class ;
+    rdfs:label "alert status"@en ;
+    rdfs:comment "A RAMS-compliant traffic-light risk category: GREEN (LOW, P<20%), YELLOW (MEDIUM, P 20-50%), or RED (HIGH, P>50%)"@en .
+
+:InfrastructureAsset a owl:Class ;
+    rdfs:label "infrastructure asset"@en ;
+    rdfs:comment "A physical asset belonging to the railway corridor that can be affected by flooding"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/entity/Q811979> ;
+    rdfs:subClassOf geo:Feature .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( :GREEN :YELLOW :RED ) .
+
