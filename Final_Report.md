@@ -91,7 +91,7 @@ The scan results are summarized below:
 
 ### 3.h. Documentation & Publication
 The HTML documentation was generated using the **OnToology** framework (which runs **Widoco** and **LODE** under the hood).
-* **Documentation Link:** [Insert OnToology/Widoco live URL here]
+* **Documentation Link:** [http://ontoology.linkeddata.es/previews/tinluan/KRSI/latest/OnToology/RailwayFloodTwin.owl/documentation/index-en.html](http://ontoology.linkeddata.es/previews/tinluan/KRSI/latest/OnToology/RailwayFloodTwin.owl/documentation/index-en.html)
 * **Repository Link:** [https://github.com/tinluan/KRSI](https://github.com/tinluan/KRSI)
 * **Method:** The repository was integrated with OnToology to generate documentation and diagrams automatically upon pushing updates. A license annotation (`http://purl.org/NET/rdflicense/cc-by4.0` for CC-BY 4.0) is declared in the OWL header to ensure open terms access.
 
