@@ -1,0 +1,611 @@
+<https://w3id.org/def/RailwayFloodTwin#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/dc/terms/creator> "TRAN Trong-Tin" .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/dc/terms/description> "Ontology representing the domain of railway infrastructure flood-risk assessment within a digital twin context. Covers infrastructure assets (track segments, culverts, bridges, ditches, embankments), hydrological simulation (rainfall, soil water index, runoff), hydraulic modeling (water surface elevation, flood polygons), vulnerability assessment (fragility curves, failure probability), and RAMS-compliant operational alerting (GREEN/YELLOW/RED)."@en .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/dc/terms/title> "Railway Flood-Risk Digital Twin Ontology"@en .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/vocab/vann/preferredNamespacePrefix> "rft" .
+<https://w3id.org/def/RailwayFloodTwin#> <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/def/RailwayFloodTwin#" .
+<https://w3id.org/def/RailwayFloodTwin#> <http://www.w3.org/2002/07/owl#versionInfo> "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://www.w3.org/ns/sosa/madeObservation
+<http://www.w3.org/ns/sosa/madeObservation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#adjacentToTrack
+<https://w3id.org/def/RailwayFloodTwin#adjacentToTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#adjacentToTrack> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#Embankment> .
+<https://w3id.org/def/RailwayFloodTwin#adjacentToTrack> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#adjacentToTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an embankment and the nearest track segment"@en .
+<https://w3id.org/def/RailwayFloodTwin#adjacentToTrack> <http://www.w3.org/2000/01/rdf-schema#label> "adjacent to track"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#belongsToCorridor
+<https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> .
+<https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and the corridor it belongs to"@en .
+<https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> <http://www.w3.org/2000/01/rdf-schema#label> "belongs to corridor"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#carriesTrack
+<https://w3id.org/def/RailwayFloodTwin#carriesTrack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#carriesTrack> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#Bridge> .
+<https://w3id.org/def/RailwayFloodTwin#carriesTrack> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#carriesTrack> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between a bridge and the track segment it supports"@en .
+<https://w3id.org/def/RailwayFloodTwin#carriesTrack> <http://www.w3.org/2000/01/rdf-schema#label> "carries track"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#computedFromRainfall
+<https://w3id.org/def/RailwayFloodTwin#computedFromRainfall> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#computedFromRainfall> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> .
+<https://w3id.org/def/RailwayFloodTwin#computedFromRainfall> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#RainfallEvent> .
+<https://w3id.org/def/RailwayFloodTwin#computedFromRainfall> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an SWI value and the rainfall events used to compute it"@en .
+<https://w3id.org/def/RailwayFloodTwin#computedFromRainfall> <http://www.w3.org/2000/01/rdf-schema#label> "computed from rainfall"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#containsAsset
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/2002/07/owl#inverseOf> <https://w3id.org/def/RailwayFloodTwin#belongsToCorridor> .
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> .
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between a corridor and its infrastructure assets"@en .
+<https://w3id.org/def/RailwayFloodTwin#containsAsset> <http://www.w3.org/2000/01/rdf-schema#label> "contains asset"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#derivesRunoff
+<https://w3id.org/def/RailwayFloodTwin#derivesRunoff> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#derivesRunoff> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> .
+<https://w3id.org/def/RailwayFloodTwin#derivesRunoff> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient> .
+<https://w3id.org/def/RailwayFloodTwin#derivesRunoff> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between SWI and the resulting runoff coefficient"@en .
+<https://w3id.org/def/RailwayFloodTwin#derivesRunoff> <http://www.w3.org/2000/01/rdf-schema#label> "derives runoff"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility
+<https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#FragilityCurve> .
+<https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and the fragility curve used for vulnerability assessment"@en .
+<https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility> <http://www.w3.org/2000/01/rdf-schema#label> "evaluated by fragility"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasCrossSection
+<https://w3id.org/def/RailwayFloodTwin#hasCrossSection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasCrossSection> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#hasCrossSection> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile> .
+<https://w3id.org/def/RailwayFloodTwin#hasCrossSection> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and its terrain cross-section profile"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasCrossSection> <http://www.w3.org/2000/01/rdf-schema#label> "has cross section"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus
+<https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus> <http://www.w3.org/2000/01/rdf-schema#comment> "Shortcut: links an asset directly to its current alert status"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus> <http://www.w3.org/2000/01/rdf-schema#label> "has current status"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasFailureProbability
+<https://w3id.org/def/RailwayFloodTwin#hasFailureProbability> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasFailureProbability> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#hasFailureProbability> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#FailureProbability> .
+<https://w3id.org/def/RailwayFloodTwin#hasFailureProbability> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and its computed probability of failure"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasFailureProbability> <http://www.w3.org/2000/01/rdf-schema#label> "has failure probability"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasFloodExtent
+<https://w3id.org/def/RailwayFloodTwin#hasFloodExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasFloodExtent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> .
+<https://w3id.org/def/RailwayFloodTwin#hasFloodExtent> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#FloodPolygon> .
+<https://w3id.org/def/RailwayFloodTwin#hasFloodExtent> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between a WSE observation and the resulting flood polygon"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasFloodExtent> <http://www.w3.org/2000/01/rdf-schema#label> "has flood extent"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold
+<https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#RiskThreshold> .
+<https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and its risk elevation thresholds"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold> <http://www.w3.org/2000/01/rdf-schema#label> "has risk threshold"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#hasWSEObservation
+<https://w3id.org/def/RailwayFloodTwin#hasWSEObservation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#hasWSEObservation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#hasWSEObservation> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> .
+<https://w3id.org/def/RailwayFloodTwin#hasWSEObservation> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an asset and a water surface elevation observation"@en .
+<https://w3id.org/def/RailwayFloodTwin#hasWSEObservation> <http://www.w3.org/2000/01/rdf-schema#label> "has WSE observation"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#isAdjacentTo
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/2000/01/rdf-schema#comment> "A symmetric relation between two physically adjacent infrastructure assets"@en .
+<https://w3id.org/def/RailwayFloodTwin#isAdjacentTo> <http://www.w3.org/2000/01/rdf-schema#label> "is adjacent to"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#madeObservation
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/sosa/madeObservation> .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2002/07/owl#inverseOf> <https://w3id.org/def/RailwayFloodTwin#observedBy> .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#Sensor> .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#Observation> .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between a sensor and its observation"@en .
+<https://w3id.org/def/RailwayFloodTwin#madeObservation> <http://www.w3.org/2000/01/rdf-schema#label> "made observation"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#observedBy
+<https://w3id.org/def/RailwayFloodTwin#observedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#observedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#Observation> .
+<https://w3id.org/def/RailwayFloodTwin#observedBy> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#Sensor> .
+<https://w3id.org/def/RailwayFloodTwin#observedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an observation and the sensor that made it"@en .
+<https://w3id.org/def/RailwayFloodTwin#observedBy> <http://www.w3.org/2000/01/rdf-schema#label> "observed by"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#operatedBy
+<https://w3id.org/def/RailwayFloodTwin#operatedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#operatedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> .
+<https://w3id.org/def/RailwayFloodTwin#operatedBy> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#RailwayOperator> .
+<https://w3id.org/def/RailwayFloodTwin#operatedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between a corridor and the railway operator"@en .
+<https://w3id.org/def/RailwayFloodTwin#operatedBy> <http://www.w3.org/2000/01/rdf-schema#label> "operated by"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#triggers
+<https://w3id.org/def/RailwayFloodTwin#triggers> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#triggers> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#triggers> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#OperationalDirective> .
+<https://w3id.org/def/RailwayFloodTwin#triggers> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an alert status and the directive it triggers"@en .
+<https://w3id.org/def/RailwayFloodTwin#triggers> <http://www.w3.org/2000/01/rdf-schema#label> "triggers"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#verdictForAsset
+<https://w3id.org/def/RailwayFloodTwin#verdictForAsset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#verdictForAsset> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#AlertVerdict> .
+<https://w3id.org/def/RailwayFloodTwin#verdictForAsset> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#verdictForAsset> <http://www.w3.org/2000/01/rdf-schema#comment> "N-ary: links an alert verdict to the assessed infrastructure asset"@en .
+<https://w3id.org/def/RailwayFloodTwin#verdictForAsset> <http://www.w3.org/2000/01/rdf-schema#label> "verdict for asset"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#verdictHasDirective
+<https://w3id.org/def/RailwayFloodTwin#verdictHasDirective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasDirective> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#AlertVerdict> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasDirective> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#OperationalDirective> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasDirective> <http://www.w3.org/2000/01/rdf-schema#comment> "N-ary: links an alert verdict to the resulting operational directive"@en .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasDirective> <http://www.w3.org/2000/01/rdf-schema#label> "verdict has directive"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#verdictHasStatus
+<https://w3id.org/def/RailwayFloodTwin#verdictHasStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasStatus> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#AlertVerdict> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasStatus> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasStatus> <http://www.w3.org/2000/01/rdf-schema#comment> "N-ary: links an alert verdict to a RAMS alert status"@en .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasStatus> <http://www.w3.org/2000/01/rdf-schema#label> "verdict has status"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#verdictHasWSE
+<https://w3id.org/def/RailwayFloodTwin#verdictHasWSE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasWSE> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#AlertVerdict> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasWSE> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasWSE> <http://www.w3.org/2000/01/rdf-schema#comment> "N-ary: links an alert verdict to the triggering water surface elevation"@en .
+<https://w3id.org/def/RailwayFloodTwin#verdictHasWSE> <http://www.w3.org/2000/01/rdf-schema#label> "verdict has WSE"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# https://w3id.org/def/RailwayFloodTwin#assetId
+<https://w3id.org/def/RailwayFloodTwin#assetId> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#assetId> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#assetId> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/def/RailwayFloodTwin#assetId> <http://www.w3.org/2000/01/rdf-schema#comment> "Unique string identifier for an infrastructure asset (e.g., Buse_3)"@en .
+<https://w3id.org/def/RailwayFloodTwin#assetId> <http://www.w3.org/2000/01/rdf-schema#label> "asset identifier"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#corridorName
+<https://w3id.org/def/RailwayFloodTwin#corridorName> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#corridorName> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> .
+<https://w3id.org/def/RailwayFloodTwin#corridorName> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/def/RailwayFloodTwin#corridorName> <http://www.w3.org/2000/01/rdf-schema#comment> "Human-readable name of the railway corridor"@en .
+<https://w3id.org/def/RailwayFloodTwin#corridorName> <http://www.w3.org/2000/01/rdf-schema#label> "corridor name"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#epsgCode
+<https://w3id.org/def/RailwayFloodTwin#epsgCode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#epsgCode> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem> .
+<https://w3id.org/def/RailwayFloodTwin#epsgCode> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/def/RailwayFloodTwin#epsgCode> <http://www.w3.org/2000/01/rdf-schema#comment> "EPSG numeric code identifying a coordinate reference system"@en .
+<https://w3id.org/def/RailwayFloodTwin#epsgCode> <http://www.w3.org/2000/01/rdf-schema#label> "EPSG code"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#halfLifeDays
+<https://w3id.org/def/RailwayFloodTwin#halfLifeDays> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#halfLifeDays> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> .
+<https://w3id.org/def/RailwayFloodTwin#halfLifeDays> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#halfLifeDays> <http://www.w3.org/2000/01/rdf-schema#comment> "SWI exponential filter half-life parameter in days"@en .
+<https://w3id.org/def/RailwayFloodTwin#halfLifeDays> <http://www.w3.org/2000/01/rdf-schema#label> "half-life days"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#intensityMmH
+<https://w3id.org/def/RailwayFloodTwin#intensityMmH> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#intensityMmH> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RainfallEvent> .
+<https://w3id.org/def/RailwayFloodTwin#intensityMmH> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#intensityMmH> <http://www.w3.org/2000/01/rdf-schema#comment> "Hourly rainfall intensity in mm/h"@en .
+<https://w3id.org/def/RailwayFloodTwin#intensityMmH> <http://www.w3.org/2000/01/rdf-schema#label> "rainfall intensity"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#medianDepth
+<https://w3id.org/def/RailwayFloodTwin#medianDepth> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#medianDepth> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#FragilityCurve> .
+<https://w3id.org/def/RailwayFloodTwin#medianDepth> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#medianDepth> <http://www.w3.org/2000/01/rdf-schema#comment> "Fragility curve parameter: depth at 50% failure probability (m)"@en .
+<https://w3id.org/def/RailwayFloodTwin#medianDepth> <http://www.w3.org/2000/01/rdf-schema#label> "median depth"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#orangeZ
+<https://w3id.org/def/RailwayFloodTwin#orangeZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#orangeZ> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RiskThreshold> .
+<https://w3id.org/def/RailwayFloodTwin#orangeZ> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#orangeZ> <http://www.w3.org/2000/01/rdf-schema#comment> "WSE threshold (m NGF) for ORANGE alert — embankment erosion risk"@en .
+<https://w3id.org/def/RailwayFloodTwin#orangeZ> <http://www.w3.org/2000/01/rdf-schema#label> "orange threshold"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#pFailureValue
+<https://w3id.org/def/RailwayFloodTwin#pFailureValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#pFailureValue> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#FailureProbability> .
+<https://w3id.org/def/RailwayFloodTwin#pFailureValue> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#pFailureValue> <http://www.w3.org/2000/01/rdf-schema#comment> "Computed failure probability from fragility curve (0.0 to 1.0)"@en .
+<https://w3id.org/def/RailwayFloodTwin#pFailureValue> <http://www.w3.org/2000/01/rdf-schema#label> "probability of failure"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#redZ
+<https://w3id.org/def/RailwayFloodTwin#redZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#redZ> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RiskThreshold> .
+<https://w3id.org/def/RailwayFloodTwin#redZ> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#redZ> <http://www.w3.org/2000/01/rdf-schema#comment> "WSE threshold (m NGF) for RED alert — water on track, halt trains"@en .
+<https://w3id.org/def/RailwayFloodTwin#redZ> <http://www.w3.org/2000/01/rdf-schema#label> "red threshold"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#runoffValue
+<https://w3id.org/def/RailwayFloodTwin#runoffValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#runoffValue> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient> .
+<https://w3id.org/def/RailwayFloodTwin#runoffValue> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#runoffValue> <http://www.w3.org/2000/01/rdf-schema#comment> "Sigmoid-derived runoff fraction (0.0 to 1.0)"@en .
+<https://w3id.org/def/RailwayFloodTwin#runoffValue> <http://www.w3.org/2000/01/rdf-schema#label> "runoff coefficient value"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#sigma
+<https://w3id.org/def/RailwayFloodTwin#sigma> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#sigma> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#FragilityCurve> .
+<https://w3id.org/def/RailwayFloodTwin#sigma> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#sigma> <http://www.w3.org/2000/01/rdf-schema#comment> "Fragility curve parameter: log-normal dispersion"@en .
+<https://w3id.org/def/RailwayFloodTwin#sigma> <http://www.w3.org/2000/01/rdf-schema#label> "sigma"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#swiValue
+<https://w3id.org/def/RailwayFloodTwin#swiValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#swiValue> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> .
+<https://w3id.org/def/RailwayFloodTwin#swiValue> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#swiValue> <http://www.w3.org/2000/01/rdf-schema#comment> "Soil Water Index value in mm"@en .
+<https://w3id.org/def/RailwayFloodTwin#swiValue> <http://www.w3.org/2000/01/rdf-schema#label> "SWI value"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#timestamp
+<https://w3id.org/def/RailwayFloodTwin#timestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#timestamp> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/def/RailwayFloodTwin#timestamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Date and time of an observation or event"@en .
+<https://w3id.org/def/RailwayFloodTwin#timestamp> <http://www.w3.org/2000/01/rdf-schema#label> "timestamp"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#wseValue
+<https://w3id.org/def/RailwayFloodTwin#wseValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#wseValue> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> .
+<https://w3id.org/def/RailwayFloodTwin#wseValue> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#wseValue> <http://www.w3.org/2000/01/rdf-schema#comment> "Water Surface Elevation in metres NGF"@en .
+<https://w3id.org/def/RailwayFloodTwin#wseValue> <http://www.w3.org/2000/01/rdf-schema#label> "WSE value"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#yellowZ
+<https://w3id.org/def/RailwayFloodTwin#yellowZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#yellowZ> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#RiskThreshold> .
+<https://w3id.org/def/RailwayFloodTwin#yellowZ> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#yellowZ> <http://www.w3.org/2000/01/rdf-schema#comment> "WSE threshold (m NGF) for YELLOW alert — drainage at capacity"@en .
+<https://w3id.org/def/RailwayFloodTwin#yellowZ> <http://www.w3.org/2000/01/rdf-schema#label> "yellow threshold"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#zBallast
+<https://w3id.org/def/RailwayFloodTwin#zBallast> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#zBallast> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#zBallast> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#zBallast> <http://www.w3.org/2000/01/rdf-schema#comment> "Top-of-ballast elevation in metres NGF"@en .
+<https://w3id.org/def/RailwayFloodTwin#zBallast> <http://www.w3.org/2000/01/rdf-schema#label> "ballast elevation"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#zTerrain
+<https://w3id.org/def/RailwayFloodTwin#zTerrain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/def/RailwayFloodTwin#zTerrain> <http://www.w3.org/2000/01/rdf-schema#domain> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#zTerrain> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+<https://w3id.org/def/RailwayFloodTwin#zTerrain> <http://www.w3.org/2000/01/rdf-schema#comment> "Ground elevation at the asset location in metres NGF"@en .
+<https://w3id.org/def/RailwayFloodTwin#zTerrain> <http://www.w3.org/2000/01/rdf-schema#label> "terrain elevation"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://www.opengis.net/ont/geosparql#Feature
+<http://www.opengis.net/ont/geosparql#Feature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.opengis.net/ont/geosparql#Feature> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.opengis.net/ont/geosparql#> .
+<http://www.opengis.net/ont/geosparql#Feature> <http://www.w3.org/2000/01/rdf-schema#label> "Feature"@en .
+# 
+# http://www.w3.org/ns/sosa/Observation
+<http://www.w3.org/ns/sosa/Observation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/ns/sosa/Observation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/ns/sosa/> .
+<http://www.w3.org/ns/sosa/Observation> <http://www.w3.org/2000/01/rdf-schema#label> "Observation"@en .
+# 
+# http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/ns/sosa/Sensor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/ns/sosa/> .
+<http://www.w3.org/ns/sosa/Sensor> <http://www.w3.org/2000/01/rdf-schema#label> "Sensor"@en .
+# 
+# http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#label> "Organization"@en .
+# 
+# https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/bot#Element> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://w3id.org/bot#> .
+<https://w3id.org/bot#Element> <http://www.w3.org/2000/01/rdf-schema#label> "Element"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#AlertStatus
+<https://w3id.org/def/RailwayFloodTwin#AlertStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#AlertStatus> <http://www.w3.org/2000/01/rdf-schema#comment> "A RAMS-compliant traffic-light risk category: GREEN (LOW, P<20%), YELLOW (MEDIUM, P 20-50%), or RED (HIGH, P>50%)"@en .
+<https://w3id.org/def/RailwayFloodTwin#AlertStatus> <http://www.w3.org/2000/01/rdf-schema#label> "alert status"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#AlertVerdict
+<https://w3id.org/def/RailwayFloodTwin#AlertVerdict> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#AlertVerdict> <http://www.w3.org/2000/01/rdf-schema#comment> "An operational risk verdict linking an asset, WSE, failure probability, alert status and directive. Implements the W3C n-ary relation pattern."@en .
+<https://w3id.org/def/RailwayFloodTwin#AlertVerdict> <http://www.w3.org/2000/01/rdf-schema#label> "alert verdict"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#BoxCulvert
+<https://w3id.org/def/RailwayFloodTwin#BoxCulvert> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#BoxCulvert> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#DrainageAsset> .
+<https://w3id.org/def/RailwayFloodTwin#BoxCulvert> <http://www.w3.org/2000/01/rdf-schema#comment> "A box-shaped culvert (Dalot) that channels water under the railway"@en .
+<https://w3id.org/def/RailwayFloodTwin#BoxCulvert> <http://www.w3.org/2000/01/rdf-schema#label> "box culvert"@en .
+<https://w3id.org/def/RailwayFloodTwin#BoxCulvert> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q1396042> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Bridge
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Element> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#DrainageAsset> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#Embankment> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2000/01/rdf-schema#comment> "A railway bridge (Pont Rail) carrying the track over a watercourse or valley"@en .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2000/01/rdf-schema#label> "bridge"@en .
+<https://w3id.org/def/RailwayFloodTwin#Bridge> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q12280> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem
+<https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem> <http://www.w3.org/2000/01/rdf-schema#comment> "A reference system for spatial coordinates (e.g., EPSG:2154 Lambert 93)"@en .
+<https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem> <http://www.w3.org/2000/01/rdf-schema#label> "coordinate reference system"@en .
+<https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q2477250> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile
+<https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile> <http://www.w3.org/2000/01/rdf-schema#comment> "A terrain elevation profile sampled perpendicular to the track from DTM raster data"@en .
+<https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile> <http://www.w3.org/2000/01/rdf-schema#label> "cross-section profile"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Culvert
+<https://w3id.org/def/RailwayFloodTwin#Culvert> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#Culvert> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#DrainageAsset> .
+<https://w3id.org/def/RailwayFloodTwin#Culvert> <http://www.w3.org/2000/01/rdf-schema#comment> "A pipe culvert (Buse) that channels water under the railway embankment"@en .
+<https://w3id.org/def/RailwayFloodTwin#Culvert> <http://www.w3.org/2000/01/rdf-schema#label> "culvert"@en .
+<https://w3id.org/def/RailwayFloodTwin#Culvert> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q1396042> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#DrainageAsset
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#Embankment> .
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/2000/01/rdf-schema#comment> "An infrastructure asset designed to channel water away from the track"@en .
+<https://w3id.org/def/RailwayFloodTwin#DrainageAsset> <http://www.w3.org/2000/01/rdf-schema#label> "drainage asset"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#EarthDitch
+<https://w3id.org/def/RailwayFloodTwin#EarthDitch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#EarthDitch> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#DrainageAsset> .
+<https://w3id.org/def/RailwayFloodTwin#EarthDitch> <http://www.w3.org/2000/01/rdf-schema#comment> "An unlined drainage ditch (Fosse terre) running alongside the railway"@en .
+<https://w3id.org/def/RailwayFloodTwin#EarthDitch> <http://www.w3.org/2000/01/rdf-schema#label> "earth ditch"@en .
+<https://w3id.org/def/RailwayFloodTwin#EarthDitch> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q173036> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Embankment
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/def/RailwayFloodTwin#TrackSegment> .
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/2000/01/rdf-schema#comment> "A raised earth structure (Talus) supporting or protecting the railway track"@en .
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/2000/01/rdf-schema#label> "embankment"@en .
+<https://w3id.org/def/RailwayFloodTwin#Embankment> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q646991> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#FailureProbability
+<https://w3id.org/def/RailwayFloodTwin#FailureProbability> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#FailureProbability> <http://www.w3.org/2000/01/rdf-schema#comment> "A computed probability (0.0-1.0) of ballast or structural failure due to flood water depth"@en .
+<https://w3id.org/def/RailwayFloodTwin#FailureProbability> <http://www.w3.org/2000/01/rdf-schema#label> "failure probability"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#FloodPolygon
+<https://w3id.org/def/RailwayFloodTwin#FloodPolygon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#FloodPolygon> <http://www.w3.org/2000/01/rdf-schema#comment> "A geographic polygon representing the spatial extent of inundation at a simulation timestep"@en .
+<https://w3id.org/def/RailwayFloodTwin#FloodPolygon> <http://www.w3.org/2000/01/rdf-schema#label> "flood polygon"@en .
+<https://w3id.org/def/RailwayFloodTwin#FloodPolygon> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q8068> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#FragilityCurve
+<https://w3id.org/def/RailwayFloodTwin#FragilityCurve> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#FragilityCurve> <http://www.w3.org/2000/01/rdf-schema#comment> "A log-normal probability distribution mapping water depth to probability of structural failure. P_failure = Phi(ln(depth / median_depth) / sigma)"@en .
+<https://w3id.org/def/RailwayFloodTwin#FragilityCurve> <http://www.w3.org/2000/01/rdf-schema#label> "fragility curve"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset
+<https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.opengis.net/ont/geosparql#Feature> .
+<https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> <http://www.w3.org/2000/01/rdf-schema#comment> "A physical asset belonging to the railway corridor that can be affected by flooding"@en .
+<https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> <http://www.w3.org/2000/01/rdf-schema#label> "infrastructure asset"@en .
+<https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q811979> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#LinedDitch
+<https://w3id.org/def/RailwayFloodTwin#LinedDitch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#LinedDitch> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#DrainageAsset> .
+<https://w3id.org/def/RailwayFloodTwin#LinedDitch> <http://www.w3.org/2000/01/rdf-schema#comment> "A lined drainage ditch (Fosse terre revetu) with reinforced surface"@en .
+<https://w3id.org/def/RailwayFloodTwin#LinedDitch> <http://www.w3.org/2000/01/rdf-schema#label> "lined ditch"@en .
+<https://w3id.org/def/RailwayFloodTwin#LinedDitch> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q173036> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Observation
+<https://w3id.org/def/RailwayFloodTwin#Observation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#Observation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/sosa/Observation> .
+<https://w3id.org/def/RailwayFloodTwin#Observation> <http://www.w3.org/2000/01/rdf-schema#comment> "An act of measuring a property, producing a result value at a timestamp"@en .
+<https://w3id.org/def/RailwayFloodTwin#Observation> <http://www.w3.org/2000/01/rdf-schema#label> "observation"@en .
+<https://w3id.org/def/RailwayFloodTwin#Observation> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q24953776> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#OperationalDirective
+<https://w3id.org/def/RailwayFloodTwin#OperationalDirective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#OperationalDirective> <http://www.w3.org/2000/01/rdf-schema#comment> "An instruction issued to train dispatchers based on alert status"@en .
+<https://w3id.org/def/RailwayFloodTwin#OperationalDirective> <http://www.w3.org/2000/01/rdf-schema#label> "operational directive"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RailwayCorridor
+<https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid1 .
+_:genid1 <http://www.w3.org/2002/07/owl#minCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid1 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/def/RailwayFloodTwin#containsAsset> .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> <http://www.w3.org/2000/01/rdf-schema#comment> "A linear railway route along which infrastructure assets are monitored for flood risk"@en .
+<https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> <http://www.w3.org/2000/01/rdf-schema#label> "railway corridor"@en .
+<https://w3id.org/def/RailwayFloodTwin#RailwayCorridor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q22667> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RailwayOperator
+<https://w3id.org/def/RailwayFloodTwin#RailwayOperator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RailwayOperator> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/foaf/0.1/Organization> .
+<https://w3id.org/def/RailwayFloodTwin#RailwayOperator> <http://www.w3.org/2000/01/rdf-schema#comment> "An organization that operates and maintains a railway corridor"@en .
+<https://w3id.org/def/RailwayFloodTwin#RailwayOperator> <http://www.w3.org/2000/01/rdf-schema#label> "railway operator"@en .
+<https://w3id.org/def/RailwayFloodTwin#RailwayOperator> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q740752> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RainGauge
+<https://w3id.org/def/RailwayFloodTwin#RainGauge> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RainGauge> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#Sensor> .
+<https://w3id.org/def/RailwayFloodTwin#RainGauge> <http://www.w3.org/2000/01/rdf-schema#comment> "A sensor that measures rainfall intensity (mm/h)"@en .
+<https://w3id.org/def/RailwayFloodTwin#RainGauge> <http://www.w3.org/2000/01/rdf-schema#label> "rain gauge"@en .
+<https://w3id.org/def/RailwayFloodTwin#RainGauge> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q185672> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RainfallEvent
+<https://w3id.org/def/RailwayFloodTwin#RainfallEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RainfallEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A meteorological observation of rainfall intensity at a given time"@en .
+<https://w3id.org/def/RailwayFloodTwin#RainfallEvent> <http://www.w3.org/2000/01/rdf-schema#label> "rainfall event"@en .
+<https://w3id.org/def/RailwayFloodTwin#RainfallEvent> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q170175> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RiskThreshold
+<https://w3id.org/def/RailwayFloodTwin#RiskThreshold> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RiskThreshold> <http://www.w3.org/2000/01/rdf-schema#comment> "A set of elevation thresholds (yellow, orange, red) defining alert levels for an asset"@en .
+<https://w3id.org/def/RailwayFloodTwin#RiskThreshold> <http://www.w3.org/2000/01/rdf-schema#label> "risk threshold"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient
+<https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient> <http://www.w3.org/2000/01/rdf-schema#comment> "A dimensionless coefficient (0-1) representing the fraction of rainfall becoming surface runoff. Derived via sigmoid function: C_runoff = C_max / (1 + e^(-k * (SWI - SWI_mid)))"@en .
+<https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient> <http://www.w3.org/2000/01/rdf-schema#label> "runoff coefficient"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Sensor
+<https://w3id.org/def/RailwayFloodTwin#Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#Sensor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/sosa/Sensor> .
+<https://w3id.org/def/RailwayFloodTwin#Sensor> <http://www.w3.org/2000/01/rdf-schema#comment> "A device that observes a physical property of the environment"@en .
+<https://w3id.org/def/RailwayFloodTwin#Sensor> <http://www.w3.org/2000/01/rdf-schema#label> "sensor"@en .
+<https://w3id.org/def/RailwayFloodTwin#Sensor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q167676> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex
+<https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> <http://www.w3.org/2000/01/rdf-schema#comment> "A cumulative index of soil moisture computed via a recursive exponential filter from rainfall. Formula: SWI(t) = Rt * (1 - C) + SWI(t-1) * C"@en .
+<https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex> <http://www.w3.org/2000/01/rdf-schema#label> "soil water index"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#TrackSegment
+<https://w3id.org/def/RailwayFloodTwin#TrackSegment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#TrackSegment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset> .
+<https://w3id.org/def/RailwayFloodTwin#TrackSegment> <http://www.w3.org/2000/01/rdf-schema#comment> "A section of railway track (Voie) with a ballast elevation, monitored for flood overtopping"@en .
+<https://w3id.org/def/RailwayFloodTwin#TrackSegment> <http://www.w3.org/2000/01/rdf-schema#label> "track segment"@en .
+<https://w3id.org/def/RailwayFloodTwin#TrackSegment> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://www.wikidata.org/entity/Q728937> .
+# 
+# https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation
+<https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> <http://www.w3.org/2000/01/rdf-schema#comment> "The elevation (m NGF) of the water surface at a specific asset and timestep"@en .
+<https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation> <http://www.w3.org/2000/01/rdf-schema#label> "water surface elevation"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# https://w3id.org/def/RailwayFloodTwin#EmergencyHalt
+<https://w3id.org/def/RailwayFloodTwin#EmergencyHalt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#EmergencyHalt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#OperationalDirective> .
+<https://w3id.org/def/RailwayFloodTwin#EmergencyHalt> <http://www.w3.org/2000/01/rdf-schema#comment> "Halt all trains — water on track surface, ballast failure imminent"@en .
+<https://w3id.org/def/RailwayFloodTwin#EmergencyHalt> <http://www.w3.org/2000/01/rdf-schema#label> "EMERGENCY HALT (ETCS Stop)"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#GREEN
+<https://w3id.org/def/RailwayFloodTwin#GREEN> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#GREEN> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#GREEN> <https://w3id.org/def/RailwayFloodTwin#triggers> <https://w3id.org/def/RailwayFloodTwin#Standby> .
+<https://w3id.org/def/RailwayFloodTwin#GREEN> <http://www.w3.org/2000/01/rdf-schema#comment> "LOW risk — P_failure below 20%"@en .
+<https://w3id.org/def/RailwayFloodTwin#GREEN> <http://www.w3.org/2000/01/rdf-schema#label> "GREEN"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#RED
+<https://w3id.org/def/RailwayFloodTwin#RED> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#RED> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#RED> <https://w3id.org/def/RailwayFloodTwin#triggers> <https://w3id.org/def/RailwayFloodTwin#EmergencyHalt> .
+<https://w3id.org/def/RailwayFloodTwin#RED> <http://www.w3.org/2000/01/rdf-schema#comment> "HIGH risk — P_failure above 50% or WSE exceeds z_ballast"@en .
+<https://w3id.org/def/RailwayFloodTwin#RED> <http://www.w3.org/2000/01/rdf-schema#label> "RED"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#SpeedRestriction
+<https://w3id.org/def/RailwayFloodTwin#SpeedRestriction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#SpeedRestriction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#OperationalDirective> .
+<https://w3id.org/def/RailwayFloodTwin#SpeedRestriction> <http://www.w3.org/2000/01/rdf-schema#comment> "Reduce train speed to 60 km/h through the affected segment"@en .
+<https://w3id.org/def/RailwayFloodTwin#SpeedRestriction> <http://www.w3.org/2000/01/rdf-schema#label> "Speed Restriction: 60 km/h"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#Standby
+<https://w3id.org/def/RailwayFloodTwin#Standby> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#Standby> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#OperationalDirective> .
+<https://w3id.org/def/RailwayFloodTwin#Standby> <http://www.w3.org/2000/01/rdf-schema#comment> "Normal operations — no action required"@en .
+<https://w3id.org/def/RailwayFloodTwin#Standby> <http://www.w3.org/2000/01/rdf-schema#label> "Standby / Standard Speed"@en .
+# 
+# https://w3id.org/def/RailwayFloodTwin#YELLOW
+<https://w3id.org/def/RailwayFloodTwin#YELLOW> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/RailwayFloodTwin#YELLOW> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/def/RailwayFloodTwin#AlertStatus> .
+<https://w3id.org/def/RailwayFloodTwin#YELLOW> <https://w3id.org/def/RailwayFloodTwin#triggers> <https://w3id.org/def/RailwayFloodTwin#SpeedRestriction> .
+<https://w3id.org/def/RailwayFloodTwin#YELLOW> <http://www.w3.org/2000/01/rdf-schema#comment> "MEDIUM risk — P_failure between 20% and 50%"@en .
+<https://w3id.org/def/RailwayFloodTwin#YELLOW> <http://www.w3.org/2000/01/rdf-schema#label> "YELLOW"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    General axioms
+# #
+# #################################################################
+# 
+# 
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AllDifferent> .
+_:genid2 <http://www.w3.org/2002/07/owl#distinctMembers> _:genid5 .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid4 .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid3 .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://w3id.org/def/RailwayFloodTwin#YELLOW> .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://w3id.org/def/RailwayFloodTwin#RED> .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://w3id.org/def/RailwayFloodTwin#GREEN> .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+# 
+# Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

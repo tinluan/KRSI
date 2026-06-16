@@ -1,0 +1,286 @@
+{
+  "@context" : {
+    "OperationalDirective" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#OperationalDirective"
+    },
+    "hasFloodExtent" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasFloodExtent",
+      "@type" : "@id"
+    },
+    "RunoffCoefficient" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient"
+    },
+    "hasFailureProbability" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasFailureProbability",
+      "@type" : "@id"
+    },
+    "Culvert" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#Culvert"
+    },
+    "halfLifeDays" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#halfLifeDays",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "versionInfo" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionInfo"
+    },
+    "license" : {
+      "@id" : "http://purl.org/dc/terms/license"
+    },
+    "hasCurrentStatus" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus",
+      "@type" : "@id"
+    },
+    "LinedDitch" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#LinedDitch"
+    },
+    "Organization" : {
+      "@id" : "http://xmlns.com/foaf/0.1/Organization"
+    },
+    "Thing" : {
+      "@id" : "http://www.w3.org/2002/07/owl#Thing"
+    },
+    "redZ" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#redZ",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "RailwayOperator" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RailwayOperator"
+    },
+    "Bridge" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#Bridge"
+    },
+    "verdictHasDirective" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#verdictHasDirective",
+      "@type" : "@id"
+    },
+    "runoffValue" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#runoffValue",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "containsAsset" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#containsAsset",
+      "@type" : "@id"
+    },
+    "Feature" : {
+      "@id" : "http://www.opengis.net/ont/geosparql#Feature"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "sigma" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#sigma",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "zBallast" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#zBallast",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "Embankment" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#Embankment"
+    },
+    "AlertVerdict" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#AlertVerdict"
+    },
+    "operatedBy" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#operatedBy",
+      "@type" : "@id"
+    },
+    "timestamp" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#timestamp",
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "AlertStatus" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#AlertStatus"
+    },
+    "isAdjacentTo" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#isAdjacentTo",
+      "@type" : "@id"
+    },
+    "observedBy" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#observedBy",
+      "@type" : "@id"
+    },
+    "pFailureValue" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#pFailureValue",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "assetId" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#assetId",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "FragilityCurve" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#FragilityCurve"
+    },
+    "BoxCulvert" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#BoxCulvert"
+    },
+    "epsgCode" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#epsgCode",
+      "@type" : "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "verdictHasWSE" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#verdictHasWSE",
+      "@type" : "@id"
+    },
+    "creator" : {
+      "@id" : "http://purl.org/dc/terms/creator"
+    },
+    "corridorName" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#corridorName",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "RailwayCorridor" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RailwayCorridor"
+    },
+    "belongsToCorridor" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#belongsToCorridor",
+      "@type" : "@id"
+    },
+    "InfrastructureAsset" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"
+    },
+    "carriesTrack" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#carriesTrack",
+      "@type" : "@id"
+    },
+    "RiskThreshold" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RiskThreshold"
+    },
+    "hasRiskThreshold" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold",
+      "@type" : "@id"
+    },
+    "medianDepth" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#medianDepth",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "adjacentToTrack" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#adjacentToTrack",
+      "@type" : "@id"
+    },
+    "FloodPolygon" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#FloodPolygon"
+    },
+    "verdictHasStatus" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#verdictHasStatus",
+      "@type" : "@id"
+    },
+    "preferredNamespacePrefix" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespacePrefix"
+    },
+    "verdictForAsset" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#verdictForAsset",
+      "@type" : "@id"
+    },
+    "isDefinedBy" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy"
+    },
+    "swiValue" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#swiValue",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "hasCrossSection" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasCrossSection",
+      "@type" : "@id"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/terms/title"
+    },
+    "triggers" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#triggers",
+      "@type" : "@id"
+    },
+    "RainfallEvent" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RainfallEvent"
+    },
+    "FailureProbability" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#FailureProbability"
+    },
+    "madeObservation" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeObservation",
+      "@type" : "@id"
+    },
+    "DrainageAsset" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#DrainageAsset"
+    },
+    "seeAlso" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    },
+    "RainGauge" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#RainGauge"
+    },
+    "WaterSurfaceElevation" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation"
+    },
+    "hasWSEObservation" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#hasWSEObservation",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "computedFromRainfall" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#computedFromRainfall",
+      "@type" : "@id"
+    },
+    "SoilWaterIndex" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex"
+    },
+    "EarthDitch" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#EarthDitch"
+    },
+    "evaluatedByFragility" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility",
+      "@type" : "@id"
+    },
+    "wseValue" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#wseValue",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "TrackSegment" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#TrackSegment"
+    },
+    "Element" : {
+      "@id" : "https://w3id.org/bot#Element"
+    },
+    "CoordinateReferenceSystem" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem"
+    },
+    "CrossSectionProfile" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile"
+    },
+    "derivesRunoff" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#derivesRunoff",
+      "@type" : "@id"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/terms/description"
+    },
+    "zTerrain" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#zTerrain",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "preferredNamespaceUri" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespaceUri"
+    },
+    "intensityMmH" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#intensityMmH",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "yellowZ" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#yellowZ",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "Observation" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#Observation"
+    },
+    "orangeZ" : {
+      "@id" : "https://w3id.org/def/RailwayFloodTwin#orangeZ",
+      "@type" : "http://www.w3.org/2001/XMLSchema#float"
+    },
+    "Sensor" : {
+      "@id" : "http://www.w3.org/ns/sosa/Sensor"
+    }
+  }
+}
