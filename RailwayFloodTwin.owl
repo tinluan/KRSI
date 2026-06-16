@@ -1,0 +1,627 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/def/RailwayFloodTwin#"
+     xml:base="https://w3id.org/def/RailwayFloodTwin"
+     xmlns:rft="https://w3id.org/def/RailwayFloodTwin#"
+     xmlns:bot="https://w3id.org/bot#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:geo="http://www.opengis.net/ont/geosparql#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
+     xmlns:vann="http://purl.org/vocab/vann/">
+
+    <!-- ================================================================ -->
+    <!-- Ontology Declaration                                              -->
+    <!-- ================================================================ -->
+
+    <owl:Ontology rdf:about="https://w3id.org/def/RailwayFloodTwin#">
+        <dcterms:title xml:lang="en">Railway Flood-Risk Digital Twin Ontology</dcterms:title>
+        <dcterms:description xml:lang="en">Ontology representing the domain of railway infrastructure flood-risk assessment within a digital twin context. Covers infrastructure assets (track segments, culverts, bridges, ditches, embankments), hydrological simulation (rainfall, soil water index, runoff), hydraulic modeling (water surface elevation, flood polygons), vulnerability assessment (fragility curves, failure probability), and RAMS-compliant operational alerting (GREEN/YELLOW/RED).</dcterms:description>
+        <dcterms:creator>Tin Stribor Sohn</dcterms:creator>
+        <dcterms:license rdf:resource="http://purl.org/NET/rdflicense/cc-by4.0"/>
+        <vann:preferredNamespacePrefix>rft</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>https://w3id.org/def/RailwayFloodTwin#</vann:preferredNamespaceUri>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
+    </owl:Ontology>
+
+    <!-- ================================================================ -->
+    <!-- Annotation Properties                                             -->
+    <!-- ================================================================ -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri"/>
+
+    <!-- ================================================================ -->
+    <!-- Object Properties                                                 -->
+    <!-- ================================================================ -->
+
+    <!-- containsAsset / belongsToCorridor -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#containsAsset">
+        <owl:inverseOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#belongsToCorridor"/>
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:label xml:lang="en">contains asset</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between a corridor and its infrastructure assets</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#belongsToCorridor">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor"/>
+        <rdfs:label xml:lang="en">belongs to corridor</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and the corridor it belongs to</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasRiskThreshold -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasRiskThreshold">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#RiskThreshold"/>
+        <rdfs:label xml:lang="en">has risk threshold</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and its risk elevation thresholds</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasCrossSection -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasCrossSection">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile"/>
+        <rdfs:label xml:lang="en">has cross section</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and its terrain cross-section profile</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- adjacentToTrack -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#adjacentToTrack">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#Embankment"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#TrackSegment"/>
+        <rdfs:label xml:lang="en">adjacent to track</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an embankment and the nearest track segment</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- carriesTrack -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#carriesTrack">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#Bridge"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#TrackSegment"/>
+        <rdfs:label xml:lang="en">carries track</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between a bridge and the track segment it supports</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasWSEObservation -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasWSEObservation">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation"/>
+        <rdfs:label xml:lang="en">has WSE observation</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and a water surface elevation observation</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasFloodExtent -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasFloodExtent">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#FloodPolygon"/>
+        <rdfs:label xml:lang="en">has flood extent</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between a WSE observation and the resulting flood polygon</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- computedFromRainfall -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#computedFromRainfall">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#RainfallEvent"/>
+        <rdfs:label xml:lang="en">computed from rainfall</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an SWI value and the rainfall events used to compute it</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- derivesRunoff -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#derivesRunoff">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient"/>
+        <rdfs:label xml:lang="en">derives runoff</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between SWI and the resulting runoff coefficient</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- evaluatedByFragility -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#evaluatedByFragility">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#FragilityCurve"/>
+        <rdfs:label xml:lang="en">evaluated by fragility</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and the fragility curve used for vulnerability assessment</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasFailureProbability -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasFailureProbability">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#FailureProbability"/>
+        <rdfs:label xml:lang="en">has failure probability</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an asset and its computed probability of failure</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- N-ary AlertVerdict properties -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#verdictForAsset">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertVerdict"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:label xml:lang="en">verdict for asset</rdfs:label>
+        <rdfs:comment xml:lang="en">N-ary: links an alert verdict to the assessed infrastructure asset</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#verdictHasWSE">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertVerdict"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation"/>
+        <rdfs:label xml:lang="en">verdict has WSE</rdfs:label>
+        <rdfs:comment xml:lang="en">N-ary: links an alert verdict to the triggering water surface elevation</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#verdictHasStatus">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertVerdict"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:label xml:lang="en">verdict has status</rdfs:label>
+        <rdfs:comment xml:lang="en">N-ary: links an alert verdict to a RAMS alert status</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#verdictHasDirective">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertVerdict"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#OperationalDirective"/>
+        <rdfs:label xml:lang="en">verdict has directive</rdfs:label>
+        <rdfs:comment xml:lang="en">N-ary: links an alert verdict to the resulting operational directive</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- hasCurrentStatus (shortcut) -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#hasCurrentStatus">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:label xml:lang="en">has current status</rdfs:label>
+        <rdfs:comment xml:lang="en">Shortcut: links an asset directly to its current alert status</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- operatedBy -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#operatedBy">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#RailwayOperator"/>
+        <rdfs:label xml:lang="en">operated by</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between a corridor and the railway operator</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- madeObservation / observedBy -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#madeObservation">
+        <owl:inverseOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#observedBy"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/sosa/madeObservation"/>
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#Sensor"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#Observation"/>
+        <rdfs:label xml:lang="en">made observation</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between a sensor and its observation</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#observedBy">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#Observation"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#Sensor"/>
+        <rdfs:label xml:lang="en">observed by</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an observation and the sensor that made it</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- triggers -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#triggers">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#OperationalDirective"/>
+        <rdfs:label xml:lang="en">triggers</rdfs:label>
+        <rdfs:comment xml:lang="en">A relation between an alert status and the directive it triggers</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- isAdjacentTo (symmetric) -->
+    <owl:ObjectProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#isAdjacentTo">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:label xml:lang="en">is adjacent to</rdfs:label>
+        <rdfs:comment xml:lang="en">A symmetric relation between two physically adjacent infrastructure assets</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <!-- ================================================================ -->
+    <!-- Datatype Properties                                               -->
+    <!-- ================================================================ -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#assetId">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">asset identifier</rdfs:label>
+        <rdfs:comment xml:lang="en">Unique string identifier for an infrastructure asset (e.g., Buse_3)</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#zTerrain">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">terrain elevation</rdfs:label>
+        <rdfs:comment xml:lang="en">Ground elevation at the asset location in metres NGF</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#zBallast">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#TrackSegment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">ballast elevation</rdfs:label>
+        <rdfs:comment xml:lang="en">Top-of-ballast elevation in metres NGF</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#yellowZ">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RiskThreshold"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">yellow threshold</rdfs:label>
+        <rdfs:comment xml:lang="en">WSE threshold (m NGF) for YELLOW alert — drainage at capacity</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#orangeZ">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RiskThreshold"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">orange threshold</rdfs:label>
+        <rdfs:comment xml:lang="en">WSE threshold (m NGF) for ORANGE alert — embankment erosion risk</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#redZ">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RiskThreshold"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">red threshold</rdfs:label>
+        <rdfs:comment xml:lang="en">WSE threshold (m NGF) for RED alert — water on track, halt trains</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#intensityMmH">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RainfallEvent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">rainfall intensity</rdfs:label>
+        <rdfs:comment xml:lang="en">Hourly rainfall intensity in mm/h</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#swiValue">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">SWI value</rdfs:label>
+        <rdfs:comment xml:lang="en">Soil Water Index value in mm</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#halfLifeDays">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">half-life days</rdfs:label>
+        <rdfs:comment xml:lang="en">SWI exponential filter half-life parameter in days</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#wseValue">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">WSE value</rdfs:label>
+        <rdfs:comment xml:lang="en">Water Surface Elevation in metres NGF</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#pFailureValue">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#FailureProbability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">probability of failure</rdfs:label>
+        <rdfs:comment xml:lang="en">Computed failure probability from fragility curve (0.0 to 1.0)</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#medianDepth">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#FragilityCurve"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">median depth</rdfs:label>
+        <rdfs:comment xml:lang="en">Fragility curve parameter: depth at 50% failure probability (m)</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#sigma">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#FragilityCurve"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">sigma</rdfs:label>
+        <rdfs:comment xml:lang="en">Fragility curve parameter: log-normal dispersion</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#timestamp">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:label xml:lang="en">timestamp</rdfs:label>
+        <rdfs:comment xml:lang="en">Date and time of an observation or event</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#corridorName">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">corridor name</rdfs:label>
+        <rdfs:comment xml:lang="en">Human-readable name of the railway corridor</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#runoffValue">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="en">runoff coefficient value</rdfs:label>
+        <rdfs:comment xml:lang="en">Sigmoid-derived runoff fraction (0.0 to 1.0)</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/def/RailwayFloodTwin#epsgCode">
+        <rdfs:domain rdf:resource="https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">EPSG code</rdfs:label>
+        <rdfs:comment xml:lang="en">EPSG numeric code identifying a coordinate reference system</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <!-- ================================================================ -->
+    <!-- Classes                                                           -->
+    <!-- ================================================================ -->
+
+    <!-- External classes referenced -->
+    <owl:Class rdf:about="http://www.opengis.net/ont/geosparql#Feature">
+        <rdfs:label xml:lang="en">Feature</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.opengis.net/ont/geosparql#"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sensor">
+        <rdfs:label xml:lang="en">Sensor</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/sosa/"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
+        <rdfs:label xml:lang="en">Observation</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/sosa/"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/bot#Element">
+        <rdfs:label xml:lang="en">Element</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="https://w3id.org/bot#"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization">
+        <rdfs:label xml:lang="en">Organization</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Class>
+
+    <!-- RailwayCorridor -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor">
+        <rdfs:label xml:lang="en">railway corridor</rdfs:label>
+        <rdfs:comment xml:lang="en">A linear railway route along which infrastructure assets are monitored for flood risk</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q22667"/>
+    </owl:Class>
+
+    <!-- InfrastructureAsset (subClassOf geo:Feature) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset">
+        <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+        <rdfs:label xml:lang="en">infrastructure asset</rdfs:label>
+        <rdfs:comment xml:lang="en">A physical asset belonging to the railway corridor that can be affected by flooding</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q811979"/>
+    </owl:Class>
+
+    <!-- TrackSegment -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#TrackSegment">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#DrainageAsset"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#Embankment"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#Bridge"/>
+        <rdfs:label xml:lang="en">track segment</rdfs:label>
+        <rdfs:comment xml:lang="en">A section of railway track (Voie) with a ballast elevation, monitored for flood overtopping</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q728937"/>
+    </owl:Class>
+
+    <!-- DrainageAsset -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#DrainageAsset">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#Embankment"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#Bridge"/>
+        <rdfs:label xml:lang="en">drainage asset</rdfs:label>
+        <rdfs:comment xml:lang="en">An infrastructure asset designed to channel water away from the track</rdfs:comment>
+    </owl:Class>
+
+    <!-- Culvert (Buse) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#Culvert">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#DrainageAsset"/>
+        <rdfs:label xml:lang="en">culvert</rdfs:label>
+        <rdfs:comment xml:lang="en">A pipe culvert (Buse) that channels water under the railway embankment</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q1396042"/>
+    </owl:Class>
+
+    <!-- BoxCulvert (Dalot) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#BoxCulvert">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#DrainageAsset"/>
+        <rdfs:label xml:lang="en">box culvert</rdfs:label>
+        <rdfs:comment xml:lang="en">A box-shaped culvert (Dalot) that channels water under the railway</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q1396042"/>
+    </owl:Class>
+
+    <!-- EarthDitch (Fosse terre) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#EarthDitch">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#DrainageAsset"/>
+        <rdfs:label xml:lang="en">earth ditch</rdfs:label>
+        <rdfs:comment xml:lang="en">An unlined drainage ditch (Fosse terre) running alongside the railway</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q173036"/>
+    </owl:Class>
+
+    <!-- LinedDitch (Fosse terre revetu) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#LinedDitch">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#DrainageAsset"/>
+        <rdfs:label xml:lang="en">lined ditch</rdfs:label>
+        <rdfs:comment xml:lang="en">A lined drainage ditch (Fosse terre revetu) with reinforced surface</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q173036"/>
+    </owl:Class>
+
+    <!-- Embankment (Talus) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#Embankment">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/def/RailwayFloodTwin#Bridge"/>
+        <rdfs:label xml:lang="en">embankment</rdfs:label>
+        <rdfs:comment xml:lang="en">A raised earth structure (Talus) supporting or protecting the railway track</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q646991"/>
+    </owl:Class>
+
+    <!-- Bridge (Pont Rail) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#Bridge">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#InfrastructureAsset"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Element"/>
+        <rdfs:label xml:lang="en">bridge</rdfs:label>
+        <rdfs:comment xml:lang="en">A railway bridge (Pont Rail) carrying the track over a watercourse or valley</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q12280"/>
+    </owl:Class>
+
+    <!-- RiskThreshold -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RiskThreshold">
+        <rdfs:label xml:lang="en">risk threshold</rdfs:label>
+        <rdfs:comment xml:lang="en">A set of elevation thresholds (yellow, orange, red) defining alert levels for an asset</rdfs:comment>
+    </owl:Class>
+
+    <!-- CrossSectionProfile -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#CrossSectionProfile">
+        <rdfs:label xml:lang="en">cross-section profile</rdfs:label>
+        <rdfs:comment xml:lang="en">A terrain elevation profile sampled perpendicular to the track from DTM raster data</rdfs:comment>
+    </owl:Class>
+
+    <!-- Hydrological Model classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RainfallEvent">
+        <rdfs:label xml:lang="en">rainfall event</rdfs:label>
+        <rdfs:comment xml:lang="en">A meteorological observation of rainfall intensity at a given time</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q170175"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#SoilWaterIndex">
+        <rdfs:label xml:lang="en">soil water index</rdfs:label>
+        <rdfs:comment xml:lang="en">A cumulative index of soil moisture computed via a recursive exponential filter from rainfall. Formula: SWI(t) = Rt * (1 - C) + SWI(t-1) * C</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RunoffCoefficient">
+        <rdfs:label xml:lang="en">runoff coefficient</rdfs:label>
+        <rdfs:comment xml:lang="en">A dimensionless coefficient (0-1) representing the fraction of rainfall becoming surface runoff. Derived via sigmoid function: C_runoff = C_max / (1 + e^(-k * (SWI - SWI_mid)))</rdfs:comment>
+    </owl:Class>
+
+    <!-- Hydraulic Model classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#WaterSurfaceElevation">
+        <rdfs:label xml:lang="en">water surface elevation</rdfs:label>
+        <rdfs:comment xml:lang="en">The elevation (m NGF) of the water surface at a specific asset and timestep</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#FloodPolygon">
+        <rdfs:label xml:lang="en">flood polygon</rdfs:label>
+        <rdfs:comment xml:lang="en">A geographic polygon representing the spatial extent of inundation at a simulation timestep</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q8068"/>
+    </owl:Class>
+
+    <!-- Vulnerability Assessment classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#FragilityCurve">
+        <rdfs:label xml:lang="en">fragility curve</rdfs:label>
+        <rdfs:comment xml:lang="en">A log-normal probability distribution mapping water depth to probability of structural failure. P_failure = Phi(ln(depth / median_depth) / sigma)</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#FailureProbability">
+        <rdfs:label xml:lang="en">failure probability</rdfs:label>
+        <rdfs:comment xml:lang="en">A computed probability (0.0-1.0) of ballast or structural failure due to flood water depth</rdfs:comment>
+    </owl:Class>
+
+    <!-- Operational Alert classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#AlertVerdict">
+        <rdfs:label xml:lang="en">alert verdict</rdfs:label>
+        <rdfs:comment xml:lang="en">An operational risk verdict linking an asset, WSE, failure probability, alert status and directive. Implements the W3C n-ary relation pattern.</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#AlertStatus">
+        <rdfs:label xml:lang="en">alert status</rdfs:label>
+        <rdfs:comment xml:lang="en">A RAMS-compliant traffic-light risk category: GREEN (LOW, P&lt;20%), YELLOW (MEDIUM, P 20-50%), or RED (HIGH, P&gt;50%)</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#OperationalDirective">
+        <rdfs:label xml:lang="en">operational directive</rdfs:label>
+        <rdfs:comment xml:lang="en">An instruction issued to train dispatchers based on alert status</rdfs:comment>
+    </owl:Class>
+
+    <!-- Sensor classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+        <rdfs:label xml:lang="en">sensor</rdfs:label>
+        <rdfs:comment xml:lang="en">A device that observes a physical property of the environment</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q167676"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RainGauge">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/def/RailwayFloodTwin#Sensor"/>
+        <rdfs:label xml:lang="en">rain gauge</rdfs:label>
+        <rdfs:comment xml:lang="en">A sensor that measures rainfall intensity (mm/h)</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q185672"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#Observation">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <rdfs:label xml:lang="en">observation</rdfs:label>
+        <rdfs:comment xml:lang="en">An act of measuring a property, producing a result value at a timestamp</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q24953776"/>
+    </owl:Class>
+
+    <!-- Other classes -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#CoordinateReferenceSystem">
+        <rdfs:label xml:lang="en">coordinate reference system</rdfs:label>
+        <rdfs:comment xml:lang="en">A reference system for spatial coordinates (e.g., EPSG:2154 Lambert 93)</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q2477250"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RailwayOperator">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+        <rdfs:label xml:lang="en">railway operator</rdfs:label>
+        <rdfs:comment xml:lang="en">An organization that operates and maintains a railway corridor</rdfs:comment>
+        <rdfs:seeAlso rdf:resource="https://www.wikidata.org/entity/Q740752"/>
+    </owl:Class>
+
+    <!-- ================================================================ -->
+    <!-- Named Individuals (AlertStatus and OperationalDirective)          -->
+    <!-- ================================================================ -->
+
+    <!-- Alert Status Individuals (disjoint enumeration) -->
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#GREEN">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:label xml:lang="en">GREEN</rdfs:label>
+        <rdfs:comment xml:lang="en">LOW risk — P_failure below 20%</rdfs:comment>
+        <rft:triggers rdf:resource="https://w3id.org/def/RailwayFloodTwin#Standby"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#YELLOW">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:label xml:lang="en">YELLOW</rdfs:label>
+        <rdfs:comment xml:lang="en">MEDIUM risk — P_failure between 20% and 50%</rdfs:comment>
+        <rft:triggers rdf:resource="https://w3id.org/def/RailwayFloodTwin#SpeedRestriction"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#RED">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#AlertStatus"/>
+        <rdfs:label xml:lang="en">RED</rdfs:label>
+        <rdfs:comment xml:lang="en">HIGH risk — P_failure above 50% or WSE exceeds z_ballast</rdfs:comment>
+        <rft:triggers rdf:resource="https://w3id.org/def/RailwayFloodTwin#EmergencyHalt"/>
+    </owl:NamedIndividual>
+
+    <!-- Operational Directive Individuals -->
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#Standby">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#OperationalDirective"/>
+        <rdfs:label xml:lang="en">Standby / Standard Speed</rdfs:label>
+        <rdfs:comment xml:lang="en">Normal operations — no action required</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#SpeedRestriction">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#OperationalDirective"/>
+        <rdfs:label xml:lang="en">Speed Restriction: 60 km/h</rdfs:label>
+        <rdfs:comment xml:lang="en">Reduce train speed to 60 km/h through the affected segment</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/RailwayFloodTwin#EmergencyHalt">
+        <rdf:type rdf:resource="https://w3id.org/def/RailwayFloodTwin#OperationalDirective"/>
+        <rdfs:label xml:lang="en">EMERGENCY HALT (ETCS Stop)</rdfs:label>
+        <rdfs:comment xml:lang="en">Halt all trains — water on track surface, ballast failure imminent</rdfs:comment>
+    </owl:NamedIndividual>
+
+    <!-- Disjointness axiom for AlertStatus individuals -->
+    <owl:AllDifferent>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://w3id.org/def/RailwayFloodTwin#GREEN"/>
+            <rdf:Description rdf:about="https://w3id.org/def/RailwayFloodTwin#YELLOW"/>
+            <rdf:Description rdf:about="https://w3id.org/def/RailwayFloodTwin#RED"/>
+        </owl:distinctMembers>
+    </owl:AllDifferent>
+
+    <!-- Corridor must have at least one asset (cardinality) -->
+    <owl:Class rdf:about="https://w3id.org/def/RailwayFloodTwin#RailwayCorridor">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/def/RailwayFloodTwin#containsAsset"/>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+</rdf:RDF>
