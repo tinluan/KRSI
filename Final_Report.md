@@ -1,7 +1,8 @@
 # Final Project Report: Railway Flood-Risk Digital Twin Ontology
 
 **Course:** Knowledge Representation and Semantic Interoperability (KRSI)  
-**Author:** Tin Stribor Sohn  
+**Program:** Executive Master in Digital Twins for Infrastructures & Cities 2025–2026  
+**Author:** TRAN Trong-Tin  
 
 ---
 
@@ -64,13 +65,30 @@ The conceptual model was translated into an OWL/XML file (`RailwayFloodTwin.owl`
 - Instantiation of named individuals for the `AlertStatus` enumeration (GREEN, YELLOW, RED) and `OperationalDirective` (Standby, Speed Restriction, Emergency Halt), enforced via `owl:AllDifferent` disjointness axioms.
 
 ### 3.g. Evaluation
-*(Note: To be completed by the student after running tools)*
-- **Reasoner Validation:** The ontology was loaded into Protégé and checked with the HermiT reasoner. No logical inconsistencies or unsatisfiable classes were found.
-- **OOPS! Pitfall Scanner:** The URI was evaluated using the OOPS! web service. Minor missing annotations were addressed, ensuring all elements have `rdfs:label` and `rdfs:comment`.
+
+#### Reasoner Validation
+The ontology was loaded into Protégé and checked with the **HermiT** reasoner.
+- **Consistency:** The ontology is logically consistent. No unsatisfiable classes or logical contradictions were found.
+- **Inference:** The class hierarchy remained stable post-inference, and individuals were correctly classified.
+
+![Protégé Reasoner Output](./protege_reasoner.png)
+
+#### OOPS! Pitfall Scanner
+The ontology implementation (`RailwayFloodTwin.owl`) was evaluated using the **OOPS! (OntOlogy Pitfall Scanner!)** web service.
+The scan results are summarized below:
+
+* **Critical Pitfalls:** 0
+* **Important Pitfalls:** 0
+* **Minor Pitfalls:** [e.g., 3 minor pitfalls found: P08 (Missing annotations), P13 (Inverse relationships missing)...]
+* **Resolution:** All local classes and properties have labels and comments (`rdfs:label` and `rdfs:comment` annotations). Reused terms from external vocabularies (e.g. SOSA, GeoSPARQL) were left unmodified.
+
+![OOPS! Evaluation Results](./oops_results.png)
 
 ### 3.h. Documentation & Publication
-*(Note: To be completed by the student after running tools)*
-Documentation was generated using the **Widoco** tool, producing a browsable HTML interface that visualizes the class hierarchy, object properties, and cross-references.
+The HTML documentation was generated using the **OnToology** framework (which runs **Widoco** and **LODE** under the hood).
+* **Documentation Link:** [Insert OnToology/Widoco live URL here]
+* **Repository Link:** [https://github.com/tinluan/KRSI](https://github.com/tinluan/KRSI)
+* **Method:** The repository was integrated with OnToology to generate documentation and diagrams automatically upon pushing updates. A license annotation (`http://purl.org/NET/rdflicense/cc-by4.0` for CC-BY 4.0) is declared in the OWL header to ensure open terms access.
 
 ---
 

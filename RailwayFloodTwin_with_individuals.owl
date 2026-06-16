@@ -22,7 +22,7 @@
     <owl:Ontology rdf:about="https://w3id.org/def/RailwayFloodTwin#">
         <dcterms:title xml:lang="en">Railway Flood-Risk Digital Twin Ontology</dcterms:title>
         <dcterms:description xml:lang="en">Ontology representing the domain of railway infrastructure flood-risk assessment within a digital twin context. Covers infrastructure assets (track segments, culverts, bridges, ditches, embankments), hydrological simulation (rainfall, soil water index, runoff), hydraulic modeling (water surface elevation, flood polygons), vulnerability assessment (fragility curves, failure probability), and RAMS-compliant operational alerting (GREEN/YELLOW/RED).</dcterms:description>
-        <dcterms:creator>Tin Stribor Sohn</dcterms:creator>
+        <dcterms:creator>TRAN Trong-Tin</dcterms:creator>
         <dcterms:license rdf:resource="http://purl.org/NET/rdflicense/cc-by4.0"/>
         <vann:preferredNamespacePrefix>rft</vann:preferredNamespacePrefix>
         <vann:preferredNamespaceUri>https://w3id.org/def/RailwayFloodTwin#</vann:preferredNamespaceUri>
