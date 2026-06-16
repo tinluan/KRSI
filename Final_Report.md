@@ -58,11 +58,23 @@ A conceptual model was designed encompassing 27 classes, 22 object properties, a
 
 These concepts and properties were formalized in two tabular structures: `Classes.xlsx` and `Properties.xlsx`.
 
+![Conceptual Model Diagram](./conceptual_model.png)
+*Figure 1: Conceptual model of the Railway Flood-Risk Digital Twin.*
+
+![Classes in OpenRefine](./classes_openrefine.png)
+*Figure 2: Representation of the Classes in OpenRefine.*
+
+![Properties in OpenRefine](./properties_openrefine.png)
+*Figure 3: Representation of the Properties in OpenRefine.*
+
 ### 3.f. OWL Implementation
 The conceptual model was translated into an OWL/XML file (`RailwayFloodTwin.owl`). Key implementation details include:
 - Definition of the namespace URI: `https://w3id.org/def/RailwayFloodTwin#`
 - Addition of cardinality constraints (e.g., a RailwayCorridor must contain at least 1 asset).
 - Instantiation of named individuals for the `AlertStatus` enumeration (GREEN, YELLOW, RED) and `OperationalDirective` (Standby, Speed Restriction, Emergency Halt), enforced via `owl:AllDifferent` disjointness axioms.
+
+![Protégé Ontology Implementation](./protege_implementation.png)
+*Figure 4: The final OWL ontology loaded in Protégé.*
 
 ### 3.g. Evaluation
 
@@ -72,22 +84,23 @@ The ontology was loaded into Protégé and checked with the **HermiT** reasoner.
 - **Inference:** The class hierarchy remained stable post-inference, and individuals were correctly classified.
 
 ![Protégé Reasoner Output](./protege_reasoner.png)
+*Figure 5: Inferences obtained with the HermiT reasoner in Protégé.*
 
 #### OOPS! Pitfall Scanner
 The ontology implementation (`RailwayFloodTwin.owl`) was evaluated using the **OOPS! (OntOlogy Pitfall Scanner!)** web service.
 The scan results are summarized below:
 
 * **Critical Pitfalls:** 0
-* **Important Pitfalls:** 2 detected (P11 and P35)
-  * *P11: Missing domain or range in properties* (on `rft:timestamp`). We left it blank intentionally because `timestamp` is shared across `Observation`, `RainfallEvent`, and `AlertVerdict` to allow reuse, which is a standard ontology design practice.
-  * *P35: Untyped property* (on `sosa:madeObservation`). We resolved this in the latest update of `RailwayFloodTwin.owl` by explicitly declaring `sosa:madeObservation` as an `owl:ObjectProperty` in the ontology header.
-* **Minor Pitfalls:** 4 detected (P04, P08, P13, P32)
-  * *P04: Creating unconnected ontology elements* & *P08: Missing annotations* on external classes (`sosa:Sensor`, `geo:Feature` etc.). These are external classes declared locally for linking and do not require full local definitions.
-  * *P13: Inverse relationships not explicitly declared* (some properties do not require a backward relationship for our digital twin logic).
-  * *P32: Several classes with the same label* (e.g. `rft:Sensor` and `sosa:Sensor` sharing the label "Sensor", which is standard for local subclasses).
-* **Resolution:** The important pitfall P35 was resolved by adding explicit type declarations in the OWL file. All other minor pitfalls are standard side-effects of reusing external W3C/OGC vocabularies.
+* **Important Pitfalls:** 1 detected (P11)
+  * *P11: Missing domain or range in properties* (2 cases, e.g. on `rft:timestamp`). We left it blank intentionally because `timestamp` is shared across `Observation`, `RainfallEvent`, and `AlertVerdict` to allow reuse, which is a standard ontology design practice.
+* **Minor Pitfalls:** 4 types detected (P04, P08, P13, P32)
+  * *P04: Creating unconnected ontology elements* (5 cases) & *P08: Missing annotations* (6 cases) on external classes (`sosa:Sensor`, `geo:Feature` etc.). These are external classes declared locally for linking and do not require full local definitions.
+  * *P13: Inverse relationships not explicitly declared* (18 cases). Some properties do not require a backward relationship for our digital twin logic.
+  * *P32: Several classes with the same label* (2 cases). E.g. `rft:Sensor` and `sosa:Sensor` sharing the label "Sensor", which is standard for local subclasses.
+* **Resolution:** A previously identified important pitfall (P35: Untyped property on `sosa:madeObservation`) was resolved in the final update of `RailwayFloodTwin.owl` by explicitly declaring it as an `owl:ObjectProperty` in the ontology header. The remaining important pitfall (P11) and the minor pitfalls are standard side-effects of reusing external W3C/OGC vocabularies and n-ary relations.
 
 ![OOPS! Evaluation Results](./oops_results.png)
+*Figure 6: OOPS! evaluation results showing 0 critical pitfalls.*
 
 ### 3.h. Documentation & Publication
 The HTML documentation was generated using the **OnToology** framework (which runs **Widoco** and **LODE** under the hood).
@@ -119,6 +132,15 @@ WHERE {
   ?directive rdfs:label ?directiveName .
 }
 ```
+
+**Expected Query Results:**
+
+| `assetId` | `wseValue` | `statusName` | `directiveName` |
+| :--- | :--- | :--- | :--- |
+| `"Buse_0"^^xsd:string` | `"1.45"^^xsd:decimal` | `"Yellow Alert (Warning)"@en` | `"Speed Restriction"@en` |
+| `"Track_14"^^xsd:string` | `"0.8"^^xsd:decimal` | `"Green Alert (Safe)"@en` | `"Standby"@en` |
+
+*Table 1: Example SPARQL query results executed over the digital twin individuals.*
 
 ---
 
